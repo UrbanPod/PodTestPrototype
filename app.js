@@ -1,7 +1,3 @@
-/*
-Router and dependencies
-*/
-
 // Dependencies.
 var express = require('express.io');
 var path = require('path');
@@ -11,13 +7,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 
-//Import routes.
-
 var app = express();
 
 // Connect socket.io
 app.http().io();
-// Intentionally make a global variable here! That way the routes can access io.
+
+// Global io for future access.
 io = app.io;
 
 //Set up mongolab and PORTS to work locally and on Heroku.

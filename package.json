@@ -4,9 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "./node_modules/node-sass/bin/node-sass -w -r scss/ -o ./public/styles/ style.css",
-    "build": "nodemon & npm run sass"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,13 +23,17 @@
     "express-session": "^1.10.2",
     "express.io": "^1.1.13",
     "handlebars": "^3.0.1",
-    "mongoose": "^4.0.1",
+    "mongoose": "^4.0.3",
     "morgan": "^1.5.1",
     "request": "^2.54.0"
   },
   "devDependencies": {
     "browserify": "^10.2.1",
     "gulp": "^3.8.11",
-    "node-sass": "^2.1.1"
+    "gulp-nodemon": "^2.0.3",
+    "gulp-sass": "^2.0.1",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

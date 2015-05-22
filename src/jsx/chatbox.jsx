@@ -1,10 +1,8 @@
-// Home Component.
-// Contains the input box for going to another room.
-
-var Home = React.createClass({
+var ChatBox = React.createClass({
   
   getInitialState: function() {
-
+    console.log("I am here.");
+    return null;
   },
 
   render: function() {
@@ -15,3 +13,5 @@ var Home = React.createClass({
   }
 
 });
+
+module.exports = ChatBox;
