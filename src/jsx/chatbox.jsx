@@ -1,3 +1,21 @@
+var Message = React.createClass({
+  render: function() {
+
+  }
+});
+
+var MessageList = React.createClass({
+  render: function() {
+
+  }
+});
+
+var MessageForm = React.createClass({
+  render: function() {
+
+  }
+});
+
 var ChatBox = React.createClass({
   
   getInitialState: function() {
@@ -7,7 +25,7 @@ var ChatBox = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div id="chat-box">
         Hello world! I am a chatbox!
       </div>
     );
