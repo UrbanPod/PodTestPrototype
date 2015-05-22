@@ -8,7 +8,8 @@ var ChatBox = React.createClass({displayName: "ChatBox",
 
   render: function() {
     return (
-      React.createElement("div", null
+      React.createElement("div", null, 
+        "Hello world! I am a chatbox!"
       )
     );
   }
