@@ -1,5 +1,5 @@
 // Dependencies.
-var express = require('express.io');
+var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -8,12 +8,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 
 var app = express();
-
-// Connect socket.io
-app.http().io();
-
-// Global io for future access.
-io = app.io;
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 //Set up mongolab and PORTS to work locally and on Heroku.
 var mongoURI = process.env.MONGOURI || "mongodb://localhost/test";
@@ -35,10 +31,12 @@ app.get('/', function(req, res){
   res.send("Hello world!");
 });
 
-
-// TODO: Integrate email feature with actual app.
-// Temporary route to send email.
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 // POST.
 
-app.listen(PORT, "0.0.0.0");
+http.listen(3000, '0.0.0.0', function(){
+  console.log('listening on *:3000');
+});
