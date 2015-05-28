@@ -1,5 +1,3 @@
-"use strict";
-
 var socket = io();
 var Messages = [];
 
@@ -68,7 +66,6 @@ var ChatBox = React.createClass({
   displayName: "ChatBox",
 
   getInitialState: function() {
-    socket.on('init', this.initialize);
     socket.on('send:message', this.messageRecieve);
 
     return {users: [], messages:[], text: ''};
@@ -76,16 +73,10 @@ var ChatBox = React.createClass({
 
   messageRecieve: function(message){
     Messages.push(message);
-
-    var _this = this;
-    console.log(_this.messages);
     this.setState({ messages : Messages });
   },
 
   handleMessageSubmit : function(message){
-    var _this = this;
-    console.log(_this);
-
     Messages.push(message);
     this.setState({ messages : Messages });
     socket.emit('send:message', message);
