@@ -9,10 +9,14 @@ var session = require('express-session');
 
 var app = express();
 var http = require('http').Server(app);
+var routes = require('./routes');
+
+// Made global intentionally for other files to access.
 var io = require('socket.io')(http);
+var socket = require('./routes/socket');
 
 //Set up mongolab and PORTS to work locally and on Heroku.
-var mongoURI = process.env.MONGOURI || "mongodb://localhost/test";
+var mongoURI = process.env.MONGOURI_POD || "mongodb://localhost/test";
 mongoose.connect(mongoURI);
 var PORT = process.env.PORT || 3000;
 
@@ -23,20 +27,9 @@ app.use(cookieParser());
 app.use(session({secret: 'secret', resave: false, saveUninitialized: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//API Authentication Routes
+// Routing.
+// app.get('*', routes.index);
+io.sockets.on('connection', socket);
 
-// Our Routes.
-// GET.
-app.get('/', function(req, res){
-  res.send("Hello world!");
-});
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
-
-// POST.
-
-http.listen(3000, '0.0.0.0', function(){
-  console.log('listening on *:3000');
-});
+// Start server.
+http.listen(PORT, '0.0.0.0');
