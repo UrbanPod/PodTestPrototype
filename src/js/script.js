@@ -1,3 +1,2 @@
-var ChatBox = require('../jsx/chatbox.jsx'); // need to specify the jsx extension
-
-React.render(<ChatBox />, document.getElementById('content'));
+var Pod = require('../jsx/Pod.jsx'); 
+React.render(<Pod />, document.getElementById('content'));

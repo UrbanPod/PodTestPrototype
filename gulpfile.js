@@ -1,11 +1,16 @@
 'use strict';
 
 var gulp = require('gulp');
+var shell = require('gulp-shell');
 var source = require("vinyl-source-stream");
 var nodemon = require('gulp-nodemon');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var sass = require('gulp-sass');
+
+gulp.task('node:kill', shell.task([
+  'pkill node'
+]));
 
 gulp.task('nodemon', function () {
   nodemon({
@@ -28,7 +33,7 @@ gulp.task('browserify', function(){
 
 gulp.task('watch', function() {
   gulp.watch('scss/**/*.scss', ['scss']);
-  gulp.watch('src/**/*.*', ['browserify']);
+  gulp.watch('src/**/*', ['browserify']);
 });
 
 // Compile Sass into css.
@@ -42,4 +47,4 @@ gulp.task('scss:watch', function() {
   gulp.watch('scss/**/*.scss', ['scss']);
 });
 
-gulp.task('default', ['nodemon', 'watch']);
+gulp.task('default', ['node:kill','nodemon', 'watch']);
