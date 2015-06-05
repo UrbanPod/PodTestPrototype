@@ -14,6 +14,8 @@ var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var socket = require("./routes/socket");
 
+var profile = require("./routes/profile");
+
 //Set up mongolab and PORTS to work locally and on Heroku.
 var mongoURI = process.env.MONGOURI_POD || "mongodb://localhost/test";
 mongoose.connect(mongoURI);
@@ -27,7 +29,8 @@ app.use(session({secret: "secret", resave: false, saveUninitialized: true}));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routing.
-// app.get("*", routes.index);
+// app.get("/profile", profile.);
+
 io.sockets.on("connection", socket);
 
 // Start server.

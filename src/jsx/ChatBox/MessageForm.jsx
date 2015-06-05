@@ -15,11 +15,13 @@ var MessageForm = React.createClass({
   handleSubmit : function(e) {
     e.preventDefault();
 
+    var _this = this;
     var $contentEditable = $('#message-form-input');
     var content = this.br2nl($contentEditable.html());
     // var content = $contentEditable.html();
 
     var message = {
+      user: _this.props.clientUserName,
       text: content
     }
     

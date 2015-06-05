@@ -5,7 +5,7 @@ var MessageList = React.createClass({
   render: function() {
     
     var renderMessage = function(message){
-      return <Message text={message.text} />
+      return <Message user= {message.user} text={message.text} />
     }
 
     return (

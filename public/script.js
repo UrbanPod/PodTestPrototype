@@ -10,7 +10,7 @@ var ChatBox = React.createClass({
   getInitialState: function() {
     socket.on('send:message', this.messageRecieve);
 
-    return {users: [], messages:[], text: ''};
+    return {users: [], clientUserName: '', messages:[], text: ''};
   },
 
   messageRecieve: function(message){
@@ -22,7 +22,7 @@ var ChatBox = React.createClass({
     this.setState({ messages : _messages });
   },
 
-  handleMessageSubmit : function(message){
+  handleMessageSubmit: function(message){
     var _this = this;
     var _messages = _this.state.messages;
     
@@ -32,11 +32,25 @@ var ChatBox = React.createClass({
     socket.emit('send:message', message);
   },
 
+  componentWillMount: function(){
+    // Prompt for the username.
+    var _this = this;
+    _this.state.clientUserName = window.prompt("Username?");
+
+    // TODO: Check to see if username exists.
+    // First step would be to look in the localStorage.
+    console.log(_this.state.clientUserName);
+
+    this.setState(_this.state);
+  },
+
   render: function() {
     return (
       React.createElement("div", {id: "chat-box"}, 
         React.createElement(MessageList, {messages: this.state.messages}), 
-        React.createElement(MessageForm, {onMessageSubmit: this.handleMessageSubmit})
+        React.createElement(MessageForm, {
+          clientUserName: this.state.clientUserName, 
+          onMessageSubmit: this.handleMessageSubmit})
       )
     );
   }
@@ -50,7 +64,7 @@ var Message = React.createClass({
   render: function() {
     return (
       React.createElement("div", {className: "message"}, 
-        this.props.text
+        this.props.user, ": ", this.props.text
       )
     );
   }
@@ -76,11 +90,13 @@ var MessageForm = React.createClass({
   handleSubmit : function(e) {
     e.preventDefault();
 
+    var _this = this;
     var $contentEditable = $('#message-form-input');
     var content = this.br2nl($contentEditable.html());
     // var content = $contentEditable.html();
 
     var message = {
+      user: _this.props.clientUserName,
       text: content
     }
     
@@ -110,7 +126,7 @@ var MessageList = React.createClass({
   render: function() {
     
     var renderMessage = function(message){
-      return React.createElement(Message, {text: message.text})
+      return React.createElement(Message, {user: message.user, text: message.text})
     }
 
     return (
@@ -156,7 +172,22 @@ var Pod = React.createClass({displayName: "Pod",
 
 module.exports = Pod;
 
-},{"./ChatBox/ChatBox.jsx":1,"./LocationBox.jsx":5,"./Progress.jsx":7}],7:[function(require,module,exports){
+},{"./ChatBox/ChatBox.jsx":1,"./LocationBox.jsx":5,"./Progress.jsx":8}],7:[function(require,module,exports){
+var Profile = React.createClass({displayName: "Profile",
+  render: function() {
+    console.log("Am I even here?");
+
+    return (
+      React.createElement("div", {id: "profile"}, 
+        "Sup."
+      )
+    );
+  }
+});
+
+module.exports = Profile;
+
+},{}],8:[function(require,module,exports){
 var Progress = React.createClass({displayName: "Progress",
   render: function() {
     return (
@@ -168,8 +199,21 @@ var Progress = React.createClass({displayName: "Progress",
 
 module.exports = Progress;
 
-},{}],8:[function(require,module,exports){
-var Pod = require('../jsx/Pod.jsx'); 
-React.render(React.createElement(Pod, null), document.getElementById('content'));
+},{}],9:[function(require,module,exports){
+var Router = window.ReactRouter;
+var Route = window.ReactRouter.Route;
 
-},{"../jsx/Pod.jsx":6}]},{},[8]);
+var Pod = require('../jsx/Pod.jsx'); 
+var Profile = require('../jsx/Profile.jsx'); 
+
+var routes = (
+  React.createElement(Route, {handler: Pod, path: "/"}, 
+    React.createElement(Route, {path: "/profile", handler: Profile})
+  )
+);
+
+Router.run(routes, function (Handler) {
+  React.render(React.createElement(Handler, null), document.getElementById('content'));
+});
+
+},{"../jsx/Pod.jsx":6,"../jsx/Profile.jsx":7}]},{},[9]);

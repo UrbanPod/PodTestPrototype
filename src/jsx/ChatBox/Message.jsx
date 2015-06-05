@@ -3,7 +3,7 @@ var Message = React.createClass({
   render: function() {
     return (
       <div className="message">
-        {this.props.text}        
+        {this.props.user}: {this.props.text}        
       </div>
     );
   }
