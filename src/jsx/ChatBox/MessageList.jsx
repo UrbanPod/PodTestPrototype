@@ -5,7 +5,10 @@ var MessageList = React.createClass({
   render: function() {
     
     var renderMessage = function(message){
-      return <Message user= {message.user} text={message.text} />
+      return <Message 
+        timestamp = {message.timestamp}
+        user= {message.user} 
+        text={message.text} />
     }
 
     return (

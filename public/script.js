@@ -62,9 +62,13 @@ module.exports = ChatBox;
 var Message = React.createClass({
   displayName: "Message",
   render: function() {
+    // Time module.
+    // TODO: Refactor into its own method.
+    var today = new Date().getTime();
+
     return (
       React.createElement("div", {className: "message"}, 
-        this.props.user, ": ", this.props.text
+        "[", this.props.timestamp, "] ", this.props.user, ": ", this.props.text
       )
     );
   }
@@ -95,7 +99,10 @@ var MessageForm = React.createClass({
     var content = this.br2nl($contentEditable.html());
     // var content = $contentEditable.html();
 
+    currentTimestamp = new Date().getTime();
+
     var message = {
+      timestamp: currentTimestamp,
       user: _this.props.clientUserName,
       text: content
     }
@@ -126,7 +133,10 @@ var MessageList = React.createClass({
   render: function() {
     
     var renderMessage = function(message){
-      return React.createElement(Message, {user: message.user, text: message.text})
+      return React.createElement(Message, {
+        timestamp: message.timestamp, 
+        user: message.user, 
+        text: message.text})
     }
 
     return (

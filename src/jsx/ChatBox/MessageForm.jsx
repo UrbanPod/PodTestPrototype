@@ -20,7 +20,10 @@ var MessageForm = React.createClass({
     var content = this.br2nl($contentEditable.html());
     // var content = $contentEditable.html();
 
+    currentTimestamp = new Date().getTime();
+
     var message = {
+      timestamp: currentTimestamp,
       user: _this.props.clientUserName,
       text: content
     }
