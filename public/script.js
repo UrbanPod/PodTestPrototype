@@ -201,7 +201,30 @@ var Profile = React.createClass({displayName: "Profile",
 
     return (
       React.createElement("div", {id: "profile"}, 
-        "Sup."
+        React.createElement("ul", null, 
+          React.createElement("li", null, "Tell us about yourself!", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+          React.createElement("li", null, "Why are you interested to live with _____ people?", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+
+          React.createElement("li", null, "How clean do you maintain your space?", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+          React.createElement("li", null, "Noise?", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+          React.createElement("li", null, "Pets?", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+          React.createElement("li", null, "Email address?", 
+            React.createElement("div", {contentEditable: "true"})
+          ), 
+          React.createElement("li", null, "Sleep Schedule?", 
+            React.createElement("div", {contentEditable: "true"})
+          )
+        )
       )
     );
   }
