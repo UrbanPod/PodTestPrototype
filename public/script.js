@@ -1,4 +1,17 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var RouteHandler = window.ReactRouter.RouteHandler;
+
+var App = React.createClass({displayName: "App",
+  render: function() {
+    return (
+      React.createElement(RouteHandler, null)
+    );
+  }
+});
+
+module.exports = App;
+
+},{}],2:[function(require,module,exports){
 var socket = io();
 
 var MessageList = require("./MessageList.jsx");
@@ -58,7 +71,7 @@ var ChatBox = React.createClass({
 
 module.exports = ChatBox;
 
-},{"./MessageForm.jsx":3,"./MessageList.jsx":4}],2:[function(require,module,exports){
+},{"./MessageForm.jsx":4,"./MessageList.jsx":5}],3:[function(require,module,exports){
 var Message = React.createClass({
   displayName: "Message",
   render: function() {
@@ -76,7 +89,7 @@ var Message = React.createClass({
 
 module.exports = Message;
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var MessageForm = React.createClass({
   displayName: "MessageForm",
 
@@ -125,7 +138,7 @@ var MessageForm = React.createClass({
 
 module.exports = MessageForm;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var Message = require("./Message.jsx");
 
 var MessageList = React.createClass({
@@ -149,7 +162,7 @@ var MessageList = React.createClass({
 
 module.exports = MessageList;
 
-},{"./Message.jsx":2}],5:[function(require,module,exports){
+},{"./Message.jsx":3}],6:[function(require,module,exports){
 var LocationBox = React.createClass({displayName: "LocationBox",
   render: function() {
     return (
@@ -160,11 +173,10 @@ var LocationBox = React.createClass({displayName: "LocationBox",
 
 module.exports = LocationBox;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var LocationBox = require('./LocationBox.jsx'); 
 var Progress = require('./Progress.jsx'); 
 var ChatBox = require('./ChatBox/ChatBox.jsx'); 
-
 
 var Pod = React.createClass({displayName: "Pod",
   render: function() {
@@ -182,7 +194,7 @@ var Pod = React.createClass({displayName: "Pod",
 
 module.exports = Pod;
 
-},{"./ChatBox/ChatBox.jsx":1,"./LocationBox.jsx":5,"./Progress.jsx":8}],7:[function(require,module,exports){
+},{"./ChatBox/ChatBox.jsx":2,"./LocationBox.jsx":6,"./Progress.jsx":9}],8:[function(require,module,exports){
 var Profile = React.createClass({displayName: "Profile",
   render: function() {
     console.log("Am I even here?");
@@ -197,7 +209,7 @@ var Profile = React.createClass({displayName: "Profile",
 
 module.exports = Profile;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var Progress = React.createClass({displayName: "Progress",
   render: function() {
     return (
@@ -209,15 +221,17 @@ var Progress = React.createClass({displayName: "Progress",
 
 module.exports = Progress;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var Router = window.ReactRouter;
 var Route = window.ReactRouter.Route;
 
+var App = require('../jsx/App.jsx');
 var Pod = require('../jsx/Pod.jsx'); 
 var Profile = require('../jsx/Profile.jsx'); 
 
 var routes = (
-  React.createElement(Route, {handler: Pod, path: "/"}, 
+  React.createElement(Route, {handler: App}, 
+    React.createElement(Route, {path: "/", handler: Pod}), 
     React.createElement(Route, {path: "/profile", handler: Profile})
   )
 );
@@ -226,4 +240,4 @@ Router.run(routes, function (Handler) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"../jsx/Pod.jsx":6,"../jsx/Profile.jsx":7}]},{},[9]);
+},{"../jsx/App.jsx":1,"../jsx/Pod.jsx":7,"../jsx/Profile.jsx":8}]},{},[10]);

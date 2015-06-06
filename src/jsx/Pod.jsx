@@ -2,7 +2,6 @@ var LocationBox = require('./LocationBox.jsx');
 var Progress = require('./Progress.jsx'); 
 var ChatBox = require('./ChatBox/ChatBox.jsx'); 
 
-
 var Pod = React.createClass({
   render: function() {
     return (
