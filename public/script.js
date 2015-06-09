@@ -196,6 +196,14 @@ module.exports = Pod;
 
 },{"./ChatBox/ChatBox.jsx":2,"./LocationBox.jsx":6,"./Progress.jsx":9}],8:[function(require,module,exports){
 var Profile = React.createClass({displayName: "Profile",
+
+  componentDidMount: function() {
+    console.log($('#profile'));
+
+    $("#time-picker-start").timepicker();
+    $("#time-picker-end").timepicker();
+  },
+
   render: function() {
     console.log("Am I even here?");
 
@@ -210,21 +218,26 @@ var Profile = React.createClass({displayName: "Profile",
           ), 
 
           React.createElement("li", null, "How clean do you maintain your space?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("br", null), React.createElement("input", {id: "slider-clean", type: "range", min: "100", max: "500", step: "10"})
           ), 
           React.createElement("li", null, "Noise?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("br", null), React.createElement("input", {id: "slider-noise", type: "range", min: "100", max: "500", step: "10"})
           ), 
           React.createElement("li", null, "Pets?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("input", {type: "radio", value: "yes"}, "yes"), 
+            React.createElement("input", {type: "radio", value: "no"}, "no")
           ), 
           React.createElement("li", null, "Email address?", 
             React.createElement("div", {contentEditable: "true"})
           ), 
           React.createElement("li", null, "Sleep Schedule?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("input", {id: "time-picker-start"}), 
+            React.createElement("input", {id: "time-picker-end"})
           )
-        )
+        ), 
+
+        React.createElement("button", null, "Save")
+
       )
     );
   }

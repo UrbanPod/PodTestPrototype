@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret: "secret", resave: false, saveUninitialized: true}));
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // Routing.
 // app.get("/profile", profile.);

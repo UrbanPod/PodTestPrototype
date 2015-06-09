@@ -1,4 +1,12 @@
 var Profile = React.createClass({
+
+  componentDidMount: function() {
+    console.log($('#profile'));
+
+    $("#time-picker-start").timepicker();
+    $("#time-picker-end").timepicker();
+  },
+
   render: function() {
     console.log("Am I even here?");
 
@@ -13,21 +21,26 @@ var Profile = React.createClass({
           </li>
 
           <li>How clean do you maintain your space?
-            <div contentEditable="true"></div>
+            <br/><input id="slider-clean" type="range" min="100" max="500" step="10" />
           </li>
           <li>Noise?
-            <div contentEditable="true"></div>
+            <br/><input id="slider-noise" type="range" min="100" max="500" step="10" />
           </li>
           <li>Pets?
-            <div contentEditable="true"></div>
+            <input type="radio" value="yes">yes</input>
+            <input type="radio" value="no">no</input>
           </li>
           <li>Email address?
             <div contentEditable="true"></div>
           </li>
           <li>Sleep Schedule?
-            <div contentEditable="true"></div>
+            <input id="time-picker-start"></input>
+            <input id="time-picker-end"></input>
           </li>
         </ul>
+
+        <button>Save</button>
+
       </div>
     );
   }
