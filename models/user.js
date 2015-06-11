@@ -9,7 +9,8 @@ var mechanicsSchema = mongoose.Schema({
   cleanliness: Number,
   noise: Number,
   pets: Boolean,
-  sleep: String
+  sleepStart: Number,
+  sleepEnd: Number
 });
 
 var userSchema = mongoose.Schema({

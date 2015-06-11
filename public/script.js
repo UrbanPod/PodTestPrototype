@@ -198,10 +198,40 @@ module.exports = Pod;
 var Profile = React.createClass({displayName: "Profile",
 
   componentDidMount: function() {
-    console.log($('#profile'));
-
     $("#time-picker-start").timepicker();
     $("#time-picker-end").timepicker();
+  },
+
+  saveProfile: function() {
+
+    var username = $("li > div#username").text();
+    var about = $("#about").html();
+    var email = $("#email").html();
+    var interests = $("#interests").html();
+    var cleanliness = $("#slider-clean").val();
+    var noise = $("#slider-noise").val();
+    var pets = $("input[name=pets]:checked").val();
+    var sleepStart = $("#time-picker-start").val();
+    var sleepEnd = $("#time-picker-end").val();
+
+    var profile = {
+      username: username,
+      about: about,
+      email: email,
+      interests: interests,
+      cleanliness: cleanliness,
+      noise: noise,
+      pets: pets,
+      sleepStart: sleepStart,
+      sleepEnd: sleepEnd
+    }
+
+    console.log(profile);
+
+    $.post("/profile", profile).done(function(data) {
+      console.log("Post successful: " + data);
+    });
+
   },
 
   render: function() {
@@ -210,11 +240,14 @@ var Profile = React.createClass({displayName: "Profile",
     return (
       React.createElement("div", {id: "profile"}, 
         React.createElement("ul", null, 
+          React.createElement("li", null, "Username?", 
+            React.createElement("div", {id: "username", contentEditable: "true"})
+          ), 
           React.createElement("li", null, "Tell us about yourself!", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("div", {id: "about", contentEditable: "true"})
           ), 
           React.createElement("li", null, "Why are you interested to live with _____ people?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("div", {id: "interests", contentEditable: "true"})
           ), 
 
           React.createElement("li", null, "How clean do you maintain your space?", 
@@ -224,11 +257,11 @@ var Profile = React.createClass({displayName: "Profile",
             React.createElement("br", null), React.createElement("input", {id: "slider-noise", type: "range", min: "100", max: "500", step: "10"})
           ), 
           React.createElement("li", null, "Pets?", 
-            React.createElement("input", {type: "radio", value: "yes"}, "yes"), 
-            React.createElement("input", {type: "radio", value: "no"}, "no")
+            React.createElement("input", {type: "radio", name: "pets", value: "yes"}, "yes"), 
+            React.createElement("input", {type: "radio", name: "pets", value: "no"}, "no")
           ), 
           React.createElement("li", null, "Email address?", 
-            React.createElement("div", {contentEditable: "true"})
+            React.createElement("div", {id: "email", contentEditable: "true"})
           ), 
           React.createElement("li", null, "Sleep Schedule?", 
             React.createElement("input", {id: "time-picker-start"}), 
@@ -236,7 +269,7 @@ var Profile = React.createClass({displayName: "Profile",
           )
         ), 
 
-        React.createElement("button", null, "Save")
+        React.createElement("button", {onClick: this.saveProfile}, "Save")
 
       )
     );

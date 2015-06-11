@@ -30,7 +30,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // Routing.
-// app.get("/profile", profile.);
+// app.get("/profile", profile.testRoute);
+app.post("/profile", profile.saveProfile);
 
 io.sockets.on("connection", socket);
 
