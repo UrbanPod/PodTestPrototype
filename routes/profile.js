@@ -1,3 +1,7 @@
+require('mongoose')
+
+var User = require("../models/user").user;
+
 module.exports = {
   
   testRoute: function(req, res) {
@@ -10,7 +14,17 @@ module.exports = {
     console.log(req.body);
     console.log("Route hit.");
     // console.log(req);
-    res.status(200).json({});
-  }
 
+    var newUser = new User(req.body);
+    newUser.save(function(err) {
+      
+      if (err) {
+        console.log(err);
+        res.status(500).send("Could not save user!");
+        return;
+      }
+
+      res.status(200).send("Congratulations on creating your account!");
+    });
+  }
 };

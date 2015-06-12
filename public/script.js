@@ -174,6 +174,45 @@ var LocationBox = React.createClass({displayName: "LocationBox",
 module.exports = LocationBox;
 
 },{}],7:[function(require,module,exports){
+var Login = React.createClass({displayName: "Login",
+
+  handleSubmit: function(e) {
+    e.preventDefault();
+
+    // TODO: send request to the server
+    var username = React.findDOMNode(this.refs.author).value.trim();
+    var password = React.findDOMNode(this.refs.text).value.trim();
+
+    var login = {
+      username: username,
+      password: password
+    }
+
+    console.log(login);
+
+    $.post("/login", login).done(function(data) {
+      console.log("Post successful: " + data);
+      // window.location = "/#/";
+    });
+
+  },
+
+  render: function() {
+    return (
+      React.createElement("form", {id: "login", onSubmit: this.handleSubmit}, 
+        "Username:",  
+        React.createElement("input", {type: "text", ref: "username"}), 
+        "Password:",  
+        React.createElement("input", {type: "text", ref: "password"}), 
+        React.createElement("input", {type: "button", value: "Login"})
+      )
+    );
+  }
+});
+
+module.exports = Login;
+
+},{}],8:[function(require,module,exports){
 var LocationBox = require('./LocationBox.jsx'); 
 var Progress = require('./Progress.jsx'); 
 var ChatBox = require('./ChatBox/ChatBox.jsx'); 
@@ -194,8 +233,12 @@ var Pod = React.createClass({displayName: "Pod",
 
 module.exports = Pod;
 
-},{"./ChatBox/ChatBox.jsx":2,"./LocationBox.jsx":6,"./Progress.jsx":9}],8:[function(require,module,exports){
+},{"./ChatBox/ChatBox.jsx":2,"./LocationBox.jsx":6,"./Progress.jsx":10}],9:[function(require,module,exports){
+var Router = window.ReactRouter;
+
 var Profile = React.createClass({displayName: "Profile",
+
+  mixins: [Router],
 
   componentDidMount: function() {
     $("#time-picker-start").timepicker();
@@ -203,6 +246,8 @@ var Profile = React.createClass({displayName: "Profile",
   },
 
   saveProfile: function() {
+
+    var _this = this;
 
     var username = $("li > div#username").text();
     var about = $("#about").html();
@@ -230,6 +275,7 @@ var Profile = React.createClass({displayName: "Profile",
 
     $.post("/profile", profile).done(function(data) {
       console.log("Post successful: " + data);
+      window.location = "/#/";
     });
 
   },
@@ -278,7 +324,7 @@ var Profile = React.createClass({displayName: "Profile",
 
 module.exports = Profile;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var Progress = React.createClass({displayName: "Progress",
   render: function() {
     return (
@@ -290,18 +336,20 @@ var Progress = React.createClass({displayName: "Progress",
 
 module.exports = Progress;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var Router = window.ReactRouter;
 var Route = window.ReactRouter.Route;
 
 var App = require('../jsx/App.jsx');
+var Login = require('../jsx/Login.jsx'); 
 var Pod = require('../jsx/Pod.jsx'); 
 var Profile = require('../jsx/Profile.jsx'); 
 
 var routes = (
   React.createElement(Route, {handler: App}, 
     React.createElement(Route, {path: "/", handler: Pod}), 
-    React.createElement(Route, {path: "/profile", handler: Profile})
+    React.createElement(Route, {path: "/profile", handler: Profile}), 
+    React.createElement(Route, {path: "/login", handler: Login})
   )
 );
 
@@ -309,4 +357,4 @@ Router.run(routes, function (Handler) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"../jsx/App.jsx":1,"../jsx/Pod.jsx":7,"../jsx/Profile.jsx":8}]},{},[10]);
+},{"../jsx/App.jsx":1,"../jsx/Login.jsx":7,"../jsx/Pod.jsx":8,"../jsx/Profile.jsx":9}]},{},[11]);

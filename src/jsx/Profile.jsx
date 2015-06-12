@@ -1,4 +1,8 @@
+var Router = window.ReactRouter;
+
 var Profile = React.createClass({
+
+  mixins: [Router],
 
   componentDidMount: function() {
     $("#time-picker-start").timepicker();
@@ -6,6 +10,8 @@ var Profile = React.createClass({
   },
 
   saveProfile: function() {
+
+    var _this = this;
 
     var username = $("li > div#username").text();
     var about = $("#about").html();
@@ -33,6 +39,7 @@ var Profile = React.createClass({
 
     $.post("/profile", profile).done(function(data) {
       console.log("Post successful: " + data);
+      window.location = "/#/";
     });
 
   },

@@ -5,6 +5,8 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+
+var passport = require("passport");
 var session = require("express-session");
 
 var app = express();
@@ -15,6 +17,7 @@ var io = require("socket.io")(http);
 var socket = require("./routes/socket");
 
 var profile = require("./routes/profile");
+var login = require("./routes/login");
 
 //Set up mongolab and PORTS to work locally and on Heroku.
 var mongoURI = process.env.MONGOURI_POD || "mongodb://localhost/test";
@@ -30,7 +33,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // Routing.
+app.post("/login", passport.authenticate('local'), login.basic);
 // app.get("/profile", profile.testRoute);
+// app.get("/login", login.basic);
+
 app.post("/profile", profile.saveProfile);
 
 io.sockets.on("connection", socket);

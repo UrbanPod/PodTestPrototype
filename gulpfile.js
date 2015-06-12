@@ -8,6 +8,9 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 var sass = require('gulp-sass');
 
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer-core');
+
 gulp.task('node:kill', shell.task([
   'pkill node'
 ]));
@@ -38,8 +41,14 @@ gulp.task('watch', function() {
 
 // Compile Sass into css.
 gulp.task('scss', function() {
+
+  var processors = [
+    autoprefixer({browsers: ['last 2 version']})
+  ];
+
   gulp.src('scss/style.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(processors))
     .pipe(gulp.dest('public'));
 });
 
