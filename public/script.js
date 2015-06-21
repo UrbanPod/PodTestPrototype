@@ -1,4 +1,25 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '369784996554321',
+    xfbml      : true,
+    version    : 'v2.3'
+  });
+};
+
+(
+  function(d, s, id) {
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk')
+);
+
+module.exports = null;
+
+},{}],2:[function(require,module,exports){
 var RouteHandler = window.ReactRouter.RouteHandler;
 
 var App = React.createClass({displayName: "App",
@@ -11,7 +32,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 var socket = io();
 
 var MessageList = require("./MessageList.jsx");
@@ -71,7 +92,7 @@ var ChatBox = React.createClass({
 
 module.exports = ChatBox;
 
-},{"./MessageForm.jsx":4,"./MessageList.jsx":5}],3:[function(require,module,exports){
+},{"./MessageForm.jsx":5,"./MessageList.jsx":6}],4:[function(require,module,exports){
 var Message = React.createClass({
   displayName: "Message",
   render: function() {
@@ -89,7 +110,7 @@ var Message = React.createClass({
 
 module.exports = Message;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var MessageForm = React.createClass({
   displayName: "MessageForm",
 
@@ -138,7 +159,7 @@ var MessageForm = React.createClass({
 
 module.exports = MessageForm;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var Message = require("./Message.jsx");
 
 var MessageList = React.createClass({
@@ -162,7 +183,7 @@ var MessageList = React.createClass({
 
 module.exports = MessageList;
 
-},{"./Message.jsx":3}],6:[function(require,module,exports){
+},{"./Message.jsx":4}],7:[function(require,module,exports){
 var LocationBox = React.createClass({displayName: "LocationBox",
   render: function() {
     return (
@@ -173,7 +194,7 @@ var LocationBox = React.createClass({displayName: "LocationBox",
 
 module.exports = LocationBox;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var Login = React.createClass({displayName: "Login",
 
   handleSubmit: function(e) {
@@ -212,7 +233,7 @@ var Login = React.createClass({displayName: "Login",
 
 module.exports = Login;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var LocationBox = require('./LocationBox.jsx'); 
 var Progress = require('./Progress.jsx'); 
 var ChatBox = require('./ChatBox/ChatBox.jsx'); 
@@ -233,7 +254,7 @@ var Pod = React.createClass({displayName: "Pod",
 
 module.exports = Pod;
 
-},{"./ChatBox/ChatBox.jsx":2,"./LocationBox.jsx":6,"./Progress.jsx":10}],9:[function(require,module,exports){
+},{"./ChatBox/ChatBox.jsx":3,"./LocationBox.jsx":7,"./Progress.jsx":11}],10:[function(require,module,exports){
 var Router = window.ReactRouter;
 
 var Profile = React.createClass({displayName: "Profile",
@@ -324,7 +345,7 @@ var Profile = React.createClass({displayName: "Profile",
 
 module.exports = Profile;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var Progress = React.createClass({displayName: "Progress",
   render: function() {
     return (
@@ -336,7 +357,9 @@ var Progress = React.createClass({displayName: "Progress",
 
 module.exports = Progress;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
+var facebookSDK = require('./facebookSDK.js');
+
 var Router = window.ReactRouter;
 var Route = window.ReactRouter.Route;
 
@@ -357,4 +380,4 @@ Router.run(routes, function (Handler) {
   React.render(React.createElement(Handler, null), document.getElementById('content'));
 });
 
-},{"../jsx/App.jsx":1,"../jsx/Login.jsx":7,"../jsx/Pod.jsx":8,"../jsx/Profile.jsx":9}]},{},[11]);
+},{"../jsx/App.jsx":2,"../jsx/Login.jsx":8,"../jsx/Pod.jsx":9,"../jsx/Profile.jsx":10,"./facebookSDK.js":1}]},{},[12]);

@@ -1,3 +1,5 @@
+var facebookSDK = require('./facebookSDK.js');
+
 var Router = window.ReactRouter;
 var Route = window.ReactRouter.Route;
 
