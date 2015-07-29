@@ -3,4 +3,4 @@ node_modules
 component.json
 notes.TODO
 .bowerrc
-.zshrc.local
+.zsecure

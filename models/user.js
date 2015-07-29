@@ -2,8 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
-  name: String,
-  email: String,
+
+  // facebook.id: String,
+  // facebook.token: String,
+  // facebook.name: String,
+  // facebook.email: String,
+
+  username: String,
   about: String,
   interests: String,
   cleanliness: Number,
