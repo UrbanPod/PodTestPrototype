@@ -3,3 +3,4 @@ node_modules
 component.json
 notes.TODO
 .bowerrc
+.jshintrc

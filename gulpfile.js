@@ -1,12 +1,18 @@
 'use strict';
 
-var gulp = require('gulp');
-var shell = require('gulp-shell');
-var source = require("vinyl-source-stream");
-var nodemon = require('gulp-nodemon');
-var browserify = require('browserify');
-var reactify = require('reactify');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+    jshint = require('gulp-jshint'),
+    autoprefixer = require('gulp-autoprefixer'),
+    browserify = require('browserify'),
+    uglify = require('gulp-uglify'),
+    minifycss = require('gulp-minify-css'),
+    nodemon = require('gulp-nodemon'),
+    reactify = require('reactify'),
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+    shell = require('gulp-shell'),
+    source = require("vinyl-source-stream"),
+    util = require("gulp-util");
 
 gulp.task('node:kill', shell.task([
   'pkill node'
@@ -19,6 +25,13 @@ gulp.task('nodemon', function () {
   , ignore: ['node_modules/']
   , env: { 'NODE_ENV': 'development' }
   })
+});
+
+// Lint Task
+gulp.task('lint', function() {
+    return gulp.src('js/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 // Compile jsx into Javascript.
@@ -40,11 +53,11 @@ gulp.task('watch', function() {
 gulp.task('scss', function() {
   gulp.src('scss/style.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('public'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(minifycss())
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('scss:watch', function() {
-  gulp.watch('scss/**/*.scss', ['scss']);
-});
-
-gulp.task('default', ['node:kill','nodemon', 'watch']);
+gulp.task('default', ['lint', 'node:kill','nodemon', 'watch']);
