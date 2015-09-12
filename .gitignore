@@ -4,3 +4,4 @@ component.json
 notes.TODO
 .bowerrc
 .jshintrc
+*.cson
