@@ -1,9 +1,15 @@
+# General extensions.
 *.swp
-node_modules
-component.json
-notes.TODO
-.bowerrc
-.jshintrc
 *.cson
 
+# Javascript.
+.bowerrc
+.jshintrc
+node_modules
+bower_components
+
+# Security.
+.zsecure
+
+# Distribution.
 public/

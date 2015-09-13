@@ -1,38 +1,27 @@
 // Dependencies.
 var express = require("express");
 var path = require("path");
-var logger = require("morgan");
-var cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
-var session = require("express-session");
 
-var app = express();
-var http = require("http").Server(app);
+var routes = require("./routes");
+var middleware = require("./middleware");
 
-// Made global intentionally for other files to access.
-var io = require("socket.io")(http);
-var socket = require("./routes/socket");
-
-var profile = require("./routes/profile");
-
-//Set up mongolab and PORTS to work locally and on Heroku.
-var mongoURI = process.env.MONGOURI_POD || "mongodb://localhost/test";
-mongoose.connect(mongoURI);
+// Configurations
 var PORT = process.env.PORT || 3000;
+var MONGO_URI = process.env.MONGOURI_POD || "mongodb://localhost/test";
 
-app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({secret: "secret", resave: false, saveUninitialized: true}));
+// Setting static content
+var app = express();
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 
-// Routing.
-// app.get("/profile", profile.);
+// Adding middleware
+middleware(app);
 
-io.sockets.on("connection", socket);
-
-// Start server.
+// Setting up server and socket connection
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
+io.sockets.on("connection", require("./routes/socket"));
 http.listen(PORT, "0.0.0.0");
+
+// Connect to Database
+require("mongoose").connect(MONGO_URI);
