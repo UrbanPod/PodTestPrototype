@@ -14,6 +14,9 @@ var gulp = require('gulp'),
     source = require("vinyl-source-stream"),
     util = require("gulp-util");
 
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer-core');
+
 gulp.task('node:kill', shell.task([
   'pkill node'
 ]));
@@ -51,8 +54,14 @@ gulp.task('watch', function() {
 
 // Compile Sass into css.
 gulp.task('scss', function() {
+
+  var processors = [
+    autoprefixer({browsers: ['last 2 version']})
+  ];
+
   gulp.src('scss/style.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(processors))
     .pipe(gulp.dest('public'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
