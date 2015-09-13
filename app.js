@@ -26,7 +26,7 @@ mongoose.connect(mongoURI);
 var PORT = process.env.PORT || 3000;
 
 
-// TODO: Essential, but I'm not sure what they do. 
+// TODO: Essential, but I'm not sure what they do.
 passport.serializeUser(function(user, done) { done(null, user); });
 passport.deserializeUser(function(user, done) { done(null, user); });
 
@@ -58,7 +58,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 // app.get("/profile", profile.testRoute);
 // app.get("/login", login.basic);
 
-app.get('/auth/facebook', 
+app.get('/auth/facebook',
   passport.authenticate('facebook', { scope : 'email' }));
 
 app.post("/profile", profile.saveProfile);
