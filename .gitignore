@@ -5,10 +5,12 @@
 # Javascript.
 .bowerrc
 .jshintrc
+<<<<<<< HEAD
 node_modules
 bower_components
 
 # Security.
 .zsecure
 
+# Distribution.
 public/
