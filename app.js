@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 // Dependencies.
 var express = require("express");
 var path = require("path");
@@ -23,10 +25,12 @@ io.sockets.on("connection", require("./routes/socket"));
 http.listen(PORT, "0.0.0.0");
 
 // Setup Database
-models = require('./models/db')(require('sequelize')(
-  process.env.PGDB_NAME || "pod",
-  process.env.PGDB_USERNAME || "pod",
-  process.env.PGDB_PASSWORD || "pod", {
-    'dialect': 'postgres'
+var Sequelize = require('sequelize');
+models = require('./models/db')(new Sequelize(
+  process.env.PG_DB,
+  process.env.PG_USER,
+  process.env.PG_PASSWORD, {
+    'dialect': 'postgres',
+    'logging': false
   }
 ));

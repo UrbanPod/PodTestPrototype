@@ -1,11 +1,15 @@
 // Testing Dependencies
 expect = require("chai").expect;
 should = require("chai").should;
+require('dotenv').load();
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize("podbase", "admin", null, {
+var sequelize = new Sequelize(
+    process.env.PG_DB_TEST,
+    process.env.PG_USER,
+    process.env.PG_PASSWORD, {
     dialect: "postgres",
-    logging: function() { return undefined; }
+    logging: false
 });
 
 var models = require('./models/db')(sequelize);

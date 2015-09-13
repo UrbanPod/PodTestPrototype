@@ -16,10 +16,10 @@ module.exports = function (db) {
     freezeTableName: true,
     instanceMethods: {
       pack: function () {
-          return {
-            id: this.id,
-            name: this.name
-          };
+        return {
+          id: this.id,
+          name: this.name
+        };
       }
     }
   });

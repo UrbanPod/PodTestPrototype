@@ -7,20 +7,30 @@ module.exports = function (db) {
       primaryKey: true,
       defaultValue: Seq.UUIDV4
     },
-    createdAt: { type: Seq.DATE },
-    name: { type: Seq.STRING, allowNull: false },
-    email: { type: Seq.STRING, allowNull: false },
-    intro: { type: Seq.STRING }
+    createdAt: {
+      type: Seq.DATE
+    },
+    name: {
+      type: Seq.STRING,
+      allowNull: false
+    },
+    email: {
+      type: Seq.STRING,
+      allowNull: false
+    },
+    intro: {
+      type: Seq.STRING
+    }
   }, {
     paranoid: true,
     freezeTableName: true,
     instanceMethods: {
       pack: function () {
         return {
-            id: this.id,
-            name: this.name,
-            email: this.email,
-            intro: this.intro
+          id: this.id,
+          name: this.name,
+          email: this.email,
+          intro: this.intro
         }
       }
     }

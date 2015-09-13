@@ -25,7 +25,7 @@ module.exports = function (models) {
 
   it("User should require a name", function (done) {
     User.create({
-      "email":  mockedUser['email']
+      "email": mockedUser['email']
     }).then(function (result) {
       expect.fail();
       done();
