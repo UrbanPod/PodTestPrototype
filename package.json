@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.0.2",
+    "bower": "^1.5.2",
     "browserify": "^10.2.1",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.6.0",
