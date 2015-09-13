@@ -31,19 +31,19 @@ passport.serializeUser(function(user, done) { done(null, user); });
 passport.deserializeUser(function(user, done) { done(null, user); });
 
 
-// // Use the Facebook strategy for passport.
-// passport.use(new FacebookStrategy({
-//     clientID: process.env.FACEBOOK_APP_ID,
-//     clientSecret: process.env.FACEBOOK_APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     // User.findOrCreate(..., function(err, user) {
-//     //   if (err) { return done(err); }
-//     //   done(null, user);
-//     // });
-//   }
-// ));
+// Use the Facebook strategy for passport.
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate(..., function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    });
+  }
+));
 
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -54,9 +54,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 // Routing.
-// app.post("/login", passport.authenticate('local'), login.basic);
-// app.get("/profile", profile.testRoute);
-// app.get("/login", login.basic);
+app.post("/login", passport.authenticate('local'), login.basic);
+app.get("/profile", profile.testRoute);
+app.get("/login", login.basic);
 
 app.get('/auth/facebook',
   passport.authenticate('facebook', { scope : 'email' }));
