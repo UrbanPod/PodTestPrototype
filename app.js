@@ -7,7 +7,6 @@ var middleware = require("./middleware");
 
 // Configurations
 var PORT = process.env.PORT || 3000;
-var MONGO_URI = process.env.MONGOURI_POD || "mongodb://localhost/test";
 
 // Setting static content
 var app = express();
@@ -23,5 +22,11 @@ var io = require("socket.io")(http);
 io.sockets.on("connection", require("./routes/socket"));
 http.listen(PORT, "0.0.0.0");
 
-// Connect to Database
-require("mongoose").connect(MONGO_URI);
+// Setup Database
+models = require('./models/db')(require('sequelize')(
+  process.env.PGDB_NAME || "pod",
+  process.env.PGDB_USERNAME || "pod",
+  process.env.PGDB_PASSWORD || "pod", {
+    'dialect': 'postgres'
+  }
+));

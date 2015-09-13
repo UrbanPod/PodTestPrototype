@@ -1,19 +1,28 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Seq = require("sequelize");
 
-var userSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  about: String,
-  values: {
-    interests: [String]
-  },
-  mechanics: {
-    cleanliness: Number,
-    noise: Number,
-    pets: Boolean,
-    sleep: String
-  }
-});
-
-module.exports.user = mongoose.model('user',userSchema);
+module.exports = function (db) {
+  return db.define('User', {
+    id: {
+      type: Seq.UUID,
+      primaryKey: true,
+      defaultValue: Seq.UUIDV4
+    },
+    createdAt: { type: Seq.DATE },
+    name: { type: Seq.STRING, allowNull: false },
+    email: { type: Seq.STRING, allowNull: false },
+    intro: { type: Seq.STRING }
+  }, {
+    paranoid: true,
+    freezeTableName: true,
+    instanceMethods: {
+      pack: function () {
+        return {
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            intro: this.intro
+        }
+      }
+    }
+  });
+}

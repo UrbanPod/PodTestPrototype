@@ -1,30 +1,34 @@
-var MONGO_TEST_URI = "mongodb://localhost/test";
+// Testing Dependencies
 expect = require("chai").expect;
 should = require("chai").should;
 
-var mongo_test = function(next) {
-  return function() {
-    var mongoose = require("mongoose");
-    var con = mongoose.connect(MONGO_TEST_URI);
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize("podbase", "admin", null, {
+    dialect: "postgres",
+    logging: function() { return undefined; }
+});
 
-    before(function(done) {
-      mongoose.connection.on("open", function() {
-        con.connection.db.dropDatabase(done);
-      });
+var models = require('./models/db')(sequelize);
+
+var seq_test = function (next) {
+  return function () {
+    beforeEach(function (done) {
+        sequelize.sync({ force: true }).then(function() {
+            done();
+        });
     });
 
-    after(function(done) {
-      con.connection.close(done);
-    });
-
-    afterEach(function(done) {
-      con.connection.db.dropDatabase(done);
+    afterEach(function (done) {
+        sequelize.drop().then(function() {
+            done();
+        });
     });
 
     next();
   };
 }
 
-describe("Model Unittests", mongo_test(function() {
-  require("./models/tests/test_user.js")();
+describe("Model Unittests", seq_test(function () {
+  require("./models/tests/test_user.js")(models);
+  require("./models/tests/test_interest.js")(models);
 }));
