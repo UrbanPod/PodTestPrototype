@@ -7,15 +7,18 @@ var userSchema = mongoose.Schema({
   // facebook.token: String,
   // facebook.name: String,
   // facebook.email: String,
-
-  username: String,
+  name: String,
+  email: String,
   about: String,
-  interests: String,
-  cleanliness: Number,
-  noise: Number,
-  pets: Boolean,
-  sleepStart: String,
-  sleepEnd: String
+  values: {
+    interests: [String]
+  },
+  mechanics: {
+    cleanliness: Number,
+    noise: Number,
+    pets: Boolean,
+    sleep: String
+  }
 });
 
 module.exports.user = mongoose.model('user',userSchema);
