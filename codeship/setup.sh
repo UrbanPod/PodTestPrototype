@@ -6,3 +6,4 @@
 # npm install -g n
 rm -rf node_modules
 npm install
+node_modules/bower/bin/bower install

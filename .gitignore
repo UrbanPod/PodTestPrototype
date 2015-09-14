@@ -3,10 +3,9 @@
 *.cson
 
 # Javascript.
-.bowerrc
 .jshintrc
-node_modules
-bower_components
+node_modules/
+bower_components/
 
 # Security.
 .zsecure
