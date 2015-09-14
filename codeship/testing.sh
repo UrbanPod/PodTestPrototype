@@ -1,1 +1,1 @@
-mocha tests.js
+npm test
