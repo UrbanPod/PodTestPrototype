@@ -1,15 +1,36 @@
 var mockedUser = require("./mocks/user");
 
-module.exports = function() {
-  var User = require("../user");
-  it("User should have the correct fields", function(done) {
-    var user = new User.user(mockedUser);
-    user.save(function (err, result) {
-      if (err) done(err)
-      var keys = ["name","email","about","values","mechanics"];
-      keys.map(function(key) {
-        expect(result[key]).to.exist;
-      });
+module.exports = function (models) {
+  var User = models.user;
+  it("User should have the correct fields", function (done) {
+    User.create(mockedUser).then(function (result) {
+      expect(result.pack()).to.include.all.keys(
+            ["id", "name", "email", "intro"]
+      );
+      done();
+    });
+  });
+
+  it("User should require an email", function (done) {
+    User.create({
+      "name": mockedUser['name']
+    }).then(function (result) {
+      expect.fail();
+      done();
+    }).catch(function (err) {
+      expect(err['name']).to.be.equal('SequelizeValidationError');
+      done();
+    });
+  });
+
+  it("User should require a name", function (done) {
+    User.create({
+      "email": mockedUser['email']
+    }).then(function (result) {
+      expect.fail();
+      done();
+    }).catch(function (err) {
+      expect(err['name']).to.be.equal('SequelizeValidationError');
       done();
     });
   });

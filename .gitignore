@@ -9,6 +9,11 @@ bower_components/
 
 # Security.
 .zsecure
+.env
+
+# Coverage.
+coverage/
+
 
 # Distribution.
 public/
