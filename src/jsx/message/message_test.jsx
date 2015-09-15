@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-var Message = require("./Message.jsx");
+var Message = require("./message.jsx");
 
 // Mock
 var message = {

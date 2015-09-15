@@ -4,11 +4,11 @@ should = require("chai").should;
 require('dotenv').load();
 
 // Sequelize mocking
-seq_test = require("./testutils/seq_utils").seq_test;
-models = require("./testutils/seq_utils").models;
+seq_test = require("./test_utils/seq_utils").seq_test;
+models = require("./test_utils/seq_utils").models;
 
 // Jsdom mocking
-jsdom_test = require("./testutils/jsdom_utils");
+jsdom_test = require("./test_utils/jsdom_utils");
 
 // Tests
 describe("Sequelize Model Unittests", seq_test(function () {
@@ -17,5 +17,5 @@ describe("Sequelize Model Unittests", seq_test(function () {
 }));
 
 describe("React Component Unittests", function () {
-  jsdom_test(require("./src/jsx/ChatBox/test_message.jsx"));
+  jsdom_test(require("./src/jsx/message/message_test.jsx"));
 });

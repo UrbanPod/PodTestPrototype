@@ -7,13 +7,15 @@
 node_modules/
 bower_components/
 
+# Intermediates.
+_components/
+
 # Security.
 .zsecure
 .env
 
 # Coverage.
 coverage/
-
 
 # Distribution.
 public/
