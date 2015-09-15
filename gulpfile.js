@@ -18,7 +18,7 @@ var autoprefixer = require('autoprefixer');
 var minifycss = require('gulp-minify-css');
 
 // Javascript.
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var uglify = require('gulp-uglify');
@@ -32,8 +32,10 @@ gulp.task('copy', function () {
 // Lint task.
 gulp.task('lint', function () {
   return gulp.src('src/**/*.{js,jsx}')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    .pipe(eslint({
+      // useEslintrc: true
+    }))
+    .pipe(eslint.formatEach('compact', process.stderr));
 });
 
 // Compile Sass into css.
