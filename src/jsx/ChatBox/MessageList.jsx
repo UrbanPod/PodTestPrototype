@@ -3,11 +3,11 @@ var Message = require("./Message.jsx");
 var MessageList = React.createClass({
   displayName: "MessageList",
   render: function() {
-    
+
     var renderMessage = function(message){
-      return <Message 
+      return <Message
         timestamp = {message.timestamp}
-        user= {message.user} 
+        user= {message.user}
         text={message.text} />
     }
 

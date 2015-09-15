@@ -3,36 +3,19 @@ expect = require("chai").expect;
 should = require("chai").should;
 require('dotenv').load();
 
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize(
-    process.env.PG_DB_TEST,
-    process.env.PG_USER,
-    process.env.PG_PASSWORD, {
-    dialect: "postgres",
-    logging: false
-});
+// Sequelize mocking
+seq_test = require("./testutils/seq_utils").seq_test;
+models = require("./testutils/seq_utils").models;
 
-var models = require('./models/db')(sequelize);
+// Jsdom mocking
+jsdom_test = require("./testutils/jsdom_utils");
 
-var seq_test = function (next) {
-  return function () {
-    beforeEach(function (done) {
-        sequelize.sync({ force: true }).then(function() {
-            done();
-        });
-    });
-
-    afterEach(function (done) {
-        sequelize.drop().then(function() {
-            done();
-        });
-    });
-
-    next();
-  };
-}
-
-describe("Model Unittests", seq_test(function () {
-  require("./models/tests/test_user.js")(models);
-  require("./models/tests/test_interest.js")(models);
+// Tests
+describe("Sequelize Model Unittests", seq_test(function () {
+  require("./models/tests/test_user")(models);
+  require("./models/tests/test_interest")(models);
 }));
+
+describe("React Component Unittests", function () {
+  jsdom_test(require("./src/jsx/ChatBox/test_message.jsx"));
+});
