@@ -1,23 +1,27 @@
 'use strict';
 
+// General.
 var gulp = require('gulp');
+var nodemon = require('gulp-nodemon');
+var shell = require('gulp-shell');
+var rename = require('gulp-rename');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var util = require('gulp-util');
+var flatten = require('gulp-flatten');
+var runSequence = require('run-sequence');
 
+// Styling.
 var sass = require('gulp-sass');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var minifycss = require('gulp-minify-css');
 
-var jshint = require('gulp-jshint');
+// Javascript.
+var eslint = require('gulp-eslint');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var uglify = require('gulp-uglify');
-
-var nodemon = require('gulp-nodemon');
-var shell = require('gulp-shell');
-var rename = require('gulp-rename');
-var source = require("vinyl-source-stream");
-var buffer = require('vinyl-buffer');
-var util = require("gulp-util");
 
 // Copy over index.html
 gulp.task('copy', function () {
@@ -25,11 +29,22 @@ gulp.task('copy', function () {
     .pipe(gulp.dest("public"));
 });
 
-// Lint Task
+// Lint task.
 gulp.task('lint', function () {
-  return gulp.src('js/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+  return gulp.src('src/**/*.{js,jsx}')
+    .pipe(eslint({
+      // useEslintrc: true
+    }))
+    .pipe(eslint.formatEach('compact', process.stderr));
+});
+
+// Compile Sass into css.
+gulp.task('scss:components', function() {
+  gulp.src('src/jsx/**/*.scss', {base: 'src'})
+    .pipe(flatten())
+    .pipe(gulp.dest('src/scss/_components'));
+
+  runSequence('scss');
 });
 
 // Compile Sass into css.
@@ -40,7 +55,7 @@ gulp.task('scss', function () {
     })
   ];
 
-  gulp.src('scss/style.scss')
+  gulp.src('src/scss/style.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(gulp.dest('public'))
@@ -76,11 +91,12 @@ gulp.task('nodemon', function () {
 
 gulp.task('watch', function () {
   gulp.watch('src/index.html', ['copy']);
-  gulp.watch('scss/**/*.scss', ['scss']);
+  gulp.watch('src/jsx/**/*.scss', ['scss:components']);
+  gulp.watch(['src/scss/**/*.scss', '!src/scss/{_components,_components/**}'], ['scss']);
   gulp.watch('src/**/*', ['lint', 'browserify']);
 });
 
-gulp.task('build', ['copy', 'lint', 'scss', 'browserify']);
+gulp.task('build', ['copy', 'lint', 'scss:components', 'browserify']);
 gulp.task('dev', ['nodemon', 'watch']);
 gulp.task('prod', ['build', 'dev']);
 

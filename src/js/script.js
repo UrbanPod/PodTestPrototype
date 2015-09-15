@@ -1,17 +1,7 @@
-var Router = window.ReactRouter;
-var Route = window.ReactRouter.Route;
+"use strict";
 
-var App = require('../jsx/App.jsx');
-var Pod = require('../jsx/Pod.jsx'); 
-var Profile = require('../jsx/Profile.jsx'); 
+Router = window.ReactRouter;
+Route = window.ReactRouter.Route;
+RouteHandler = window.ReactRouter.RouteHandler;
 
-var routes = (
-  <Route handler={App}>
-    <Route path="/" handler={Pod}></Route>
-    <Route path="/profile" handler={Profile}></Route>
-  </Route>
-);
-
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.getElementById('content'));
-});
+require('../jsx/app/app.jsx');

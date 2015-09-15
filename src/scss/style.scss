@@ -4,15 +4,14 @@
 // Vendors.
 
 // Helpers.
-@import "helpers/materialPalette";
-@import "helpers/materialShadow";
+@import "helpers/shadows";
 
 // Base.
 @import "base/base";
 
 // Components.
-@import "components/locationBox";
-@import "components/progress";
-@import "components/chatBox";
+@import "_components/location_box";
+@import "_components/progress";
+@import "_components/chat_box";
 
 // Pages.
