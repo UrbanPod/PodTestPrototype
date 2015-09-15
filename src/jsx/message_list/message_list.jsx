@@ -1,4 +1,4 @@
-var Message = require("./Message.jsx");
+var Message = require("../message/message.jsx");
 
 var MessageList = React.createClass({
   displayName: "MessageList",

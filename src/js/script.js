@@ -1,9 +1,9 @@
 var Router = window.ReactRouter;
 var Route = window.ReactRouter.Route;
 
-var App = require('../jsx/App.jsx');
-var Pod = require('../jsx/Pod.jsx'); 
-var Profile = require('../jsx/Profile.jsx'); 
+var App = require('../jsx/app/app.jsx');
+var Pod = require('../jsx/pod/pod.jsx');
+var Profile = require('../jsx/profile/profile.jsx');
 
 var routes = (
   <Route handler={App}>

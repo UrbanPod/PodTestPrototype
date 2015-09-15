@@ -1,7 +1,7 @@
 var socket = io();
 
-var MessageList = require("./MessageList.jsx");
-var MessageForm = require("./MessageForm.jsx");
+var MessageList = require("../message_list/message_list.jsx");
+var MessageForm = require("../message_form/message_form.jsx");
 
 var ChatBox = React.createClass({
   displayName: "ChatBox",
@@ -15,7 +15,7 @@ var ChatBox = React.createClass({
   messageRecieve: function(message){
     var _this = this;
     var _messages = _this.state.messages;
-    
+
     _messages.push(message);
 
     this.setState({ messages : _messages });
@@ -24,9 +24,9 @@ var ChatBox = React.createClass({
   handleMessageSubmit: function(message){
     var _this = this;
     var _messages = _this.state.messages;
-    
+
     _messages.push(message);
-    
+
     this.setState({ messages : _messages });
     socket.emit('send:message', message);
   },
@@ -47,8 +47,8 @@ var ChatBox = React.createClass({
     return (
       <div id="chat-box">
         <MessageList messages={this.state.messages} />
-        <MessageForm 
-          clientUserName={this.state.clientUserName} 
+        <MessageForm
+          clientUserName={this.state.clientUserName}
           onMessageSubmit={this.handleMessageSubmit} />
       </div>
     );
