@@ -1,23 +1,25 @@
 'use strict';
 
+// General.
 var gulp = require('gulp');
-
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var minifycss = require('gulp-minify-css');
-
-var jshint = require('gulp-jshint');
-var browserify = require('browserify');
-var reactify = require('reactify');
-var uglify = require('gulp-uglify');
-
 var nodemon = require('gulp-nodemon');
 var shell = require('gulp-shell');
 var rename = require('gulp-rename');
 var source = require("vinyl-source-stream");
 var buffer = require('vinyl-buffer');
 var util = require("gulp-util");
+
+// Styling.
+var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+var minifycss = require('gulp-minify-css');
+
+// Javascript.
+var jshint = require('gulp-jshint');
+var browserify = require('browserify');
+var reactify = require('reactify');
+var uglify = require('gulp-uglify');
 
 // Copy over index.html
 gulp.task('copy', function () {
