@@ -10,6 +10,8 @@ var buffer = require('vinyl-buffer');
 var util = require('gulp-util');
 var flatten = require('gulp-flatten');
 var runSequence = require('run-sequence');
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
 
 // Styling.
 var sass = require('gulp-sass');
@@ -22,6 +24,10 @@ var eslint = require('gulp-eslint');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var uglify = require('gulp-uglify');
+
+// Flags.
+var isProduction = (argv.p === undefined) ? false : true;
+console.log("Production mode: " + isProduction);
 
 // Copy over index.html
 gulp.task('copy', function() {
@@ -74,7 +80,7 @@ gulp.task('browserify', function() {
   return b.bundle()
     .pipe(source('script.js'))
     .pipe(buffer())
-    .pipe(uglify().on('error', util.log))
+    .pipe(gulpif(isProduction, uglify().on('error', util.log)))
     .pipe(gulp.dest('public'));
 });
 
@@ -98,7 +104,10 @@ gulp.task('colony', shell.task([
 gulp.task('watch', function() {
   gulp.watch('src/index.html', ['copy']);
   gulp.watch('src/jsx/**/*.scss', ['scss:components']);
-  gulp.watch(['src/scss/**/*.scss', '!src/scss/{_components,_components/**}'], ['scss']);
+  gulp.watch([
+    'src/scss/**/*.scss',
+    '!src/scss/{_components,_components/**}'],
+  ['scss']);
   gulp.watch('src/**/*', ['lint', 'browserify']);
 });
 

@@ -1,3 +1,7 @@
+var Router = window.ReactRouter;
+var Route = window.ReactRouter.Route;
+var RouteHandler = window.ReactRouter.RouteHandler;
+
 var Pod = require('../pod/pod.jsx');
 var Profile = require('../profile/profile.jsx');
 
