@@ -2,9 +2,6 @@
   "name": "PodTestPrototype",
   "version": "1.0.0",
   "homepage": "https://github.com/urbanpod/PodTestPrototype",
-  "authors": [
-    "David Zhu <hdavidzhu@gmail.com>"
-  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
