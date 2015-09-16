@@ -19,3 +19,6 @@ coverage/
 
 # Distribution.
 public/
+
+# Misc.
+colony/
