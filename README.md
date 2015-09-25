@@ -1,9 +1,12 @@
 # Pod Prototype: Social Experiment
 
-[ ![Codeship Status for podtogether/pod-test-prototype](https://codeship.com/projects/cd5bb860-3b3c-0133-7ab0-4e85fe1543ec/status?branch=master)](https://codeship.com/projects/102080)
+[ ![Codeship](https://img.shields.io/codeship/cd5bb860-3b3c-0133-7ab0-4e85fe1543ec.svg?style=flat-square)](https://codeship.com/projects/102080)
+[ ![Coveralls](https://img.shields.io/coveralls/UrbandPod/PodTestPrototype.svg?style=flat-square)](https://coveralls.io/github/UrbanPod/PodTestPrototype)
 
-### Brief Description ###
-Social experiment on interaction among people looking for urban housing groups with shared interests. Prototype involves a simple chat application integrated with series of steps from gathering interested individuals all the way to signing the housing lease.
+### Brief Description
+A utility and a social experiment to help people find their own catered
+housing community in the city. Prototype involves a simple chat application
+that guides individuals to meet each other all the way to them signing the
+housing lease.
 
-### Getting Started ###
-See the [wiki](https://github.com/podtogether/pod-test-prototype/wiki).
+### [DOCUMENTATION](https://github.com/podtogether/pod-test-prototype/wiki)
