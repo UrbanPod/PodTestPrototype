@@ -24,13 +24,13 @@ var reactify = require('reactify');
 var uglify = require('gulp-uglify');
 
 // Copy over index.html
-gulp.task('copy', function () {
+gulp.task('copy', function() {
   gulp.src("src/index.html")
     .pipe(gulp.dest("public"));
 });
 
 // Lint task.
-gulp.task('lint', function () {
+gulp.task('lint', function() {
   return gulp.src('src/**/*.{js,jsx}')
     .pipe(eslint({
       // useEslintrc: true
@@ -48,7 +48,7 @@ gulp.task('scss:components', function() {
 });
 
 // Compile Sass into css.
-gulp.task('scss', function () {
+gulp.task('scss', function() {
   var processors = [
     autoprefixer({
       browsers: ['last 2 versions']
@@ -67,7 +67,7 @@ gulp.task('scss', function () {
 });
 
 // Compile jsx into Javascript.
-gulp.task('browserify', function () {
+gulp.task('browserify', function() {
   var b = browserify();
   b.transform(reactify); // Use the reactify transform.
   b.add('src/js/script.js');
@@ -78,7 +78,7 @@ gulp.task('browserify', function () {
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('nodemon', function () {
+gulp.task('nodemon', function() {
   nodemon({
     script: 'app.js',
     ext: 'js html',
@@ -89,7 +89,13 @@ gulp.task('nodemon', function () {
   })
 });
 
-gulp.task('watch', function () {
+// Visualize the folder structures.
+gulp.task('colony', shell.task([
+  'node_modules/colony/bin/colony app.js -o colony --no-modules',
+  'cd colony && python -m SimpleHTTPServer 8000'
+]));
+
+gulp.task('watch', function() {
   gulp.watch('src/index.html', ['copy']);
   gulp.watch('src/jsx/**/*.scss', ['scss:components']);
   gulp.watch(['src/scss/**/*.scss', '!src/scss/{_components,_components/**}'], ['scss']);
