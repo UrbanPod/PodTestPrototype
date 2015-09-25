@@ -1,7 +1,7 @@
 # Pod Prototype: Social Experiment
 
 [ ![Codeship](https://img.shields.io/codeship/cd5bb860-3b3c-0133-7ab0-4e85fe1543ec.svg?style=flat-square)](https://codeship.com/projects/102080)
-[ ![Coveralls](https://img.shields.io/coveralls/UrbandPod/PodTestPrototype.svg?style=flat-square)](https://coveralls.io/github/UrbanPod/PodTestPrototype)
+[ ![Coveralls](https://img.shields.io/coveralls/UrbanPod/PodTestPrototype.svg?style=flat-square)](https://coveralls.io/github/UrbanPod/PodTestPrototype)
 
 ### Brief Description
 A utility and a social experiment to help people find their own catered
