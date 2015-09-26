@@ -82,6 +82,7 @@ var Profile = React.createClass({
         <div className="form">
           <h1>
             hello! nice to meet you</h1>
+          <div>we are a group of [engineers] looking to house together.  we enjoy [working on projects together], and we are looking for people to join us!</div>
           <p className="title">we would love to learn a little more about you</p>
           <input id="name" placeholder="Name" type="text"></input>
           <input id="email" placeholder="Email" type="text"></input>
