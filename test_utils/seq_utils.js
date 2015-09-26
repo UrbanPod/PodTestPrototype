@@ -4,7 +4,7 @@ var sequelize = new Sequelize(
   process.env.PG_USER,
   process.env.PG_PASSWORD, {
     dialect: "postgres",
-    logging: false
+    logging: console.log
   });
 
 var models = require('../models/db')(sequelize);

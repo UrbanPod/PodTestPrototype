@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var Message = require("./message.jsx");
 
-// Mock
+// Mock.
 var message = {
   timestamp: 10,
   user: "mocked",

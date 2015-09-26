@@ -1,10 +1,10 @@
 var socket = io();
 
-var MessageList = require("../message_list/message_list.jsx");
-var MessageForm = require("../message_form/message_form.jsx");
+var MessageList = require('../message_list/message_list.jsx');
+var MessageForm = require('../message_form/message_form.jsx');
 
 var ChatBox = React.createClass({
-  displayName: "ChatBox",
+  displayName: 'ChatBox',
 
   getInitialState: function() {
     socket.on('send:message', this.messageRecieve);
@@ -34,7 +34,7 @@ var ChatBox = React.createClass({
   componentWillMount: function(){
     // Prompt for the username.
     var _this = this;
-    _this.state.clientUserName = window.prompt("Username?");
+    _this.state.clientUserName = window.prompt('Username?');
 
     // TODO: Check to see if username exists.
     // First step would be to look in the localStorage.
@@ -45,7 +45,7 @@ var ChatBox = React.createClass({
 
   render: function() {
     return (
-      <div id="chat-box">
+      <div id='chat-box'>
         <MessageList messages={this.state.messages} />
         <MessageForm
           clientUserName={this.state.clientUserName}

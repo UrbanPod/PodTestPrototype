@@ -4,8 +4,8 @@ should = require("chai").should;
 require('dotenv').load();
 
 // Sequelize mocking
-seq_test = require("./test_utils/seq_utils").seq_test;
-models = require("./test_utils/seq_utils").models;
+var seq_test = require("./test_utils/seq_utils").seq_test;
+var models = require("./test_utils/seq_utils").models;
 
 // Jsdom mocking
 jsdom_test = require("./test_utils/jsdom_utils");
