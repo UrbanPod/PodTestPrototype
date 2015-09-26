@@ -33,6 +33,8 @@ console.log("Production mode: " + isProduction);
 gulp.task('copy', function() {
   gulp.src("src/index.html")
     .pipe(gulp.dest("public"));
+  gulp.src("assets/images/*.png")
+    .pipe(gulp.dest("public/images"));
 });
 
 // Lint task.
@@ -108,7 +110,7 @@ gulp.task('watch', function() {
     'src/scss/**/*.scss',
     '!src/scss/{_components,_components/**}'],
   ['scss']);
-  gulp.watch('src/**/*', ['lint', 'browserify']);
+  gulp.watch('src/**/*', ['browserify']);
 });
 
 gulp.task('build', ['copy', 'lint', 'scss:components', 'browserify']);
