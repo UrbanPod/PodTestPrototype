@@ -1,3 +1,5 @@
+var MultipleChoiceForm = require('../triple_form/triple_form.jsx');
+
 var mouseDown;
 
 // Handle user interactions
@@ -73,77 +75,64 @@ var Profile = React.createClass({
       interaction: $(".interaction-active").text(),
       interests: $("#interests").val()
     };
-
     console.log(data);
   },
+
   render: function() {
     return (
-      <div className="form-container">
-        <div className="form">
-          <h1>
-            Hello! Nice to meet you</h1>
-          <div>We are a group of [engineers] looking to house together.  We enjoy [working on projects together], and we are looking for people to join us!</div>
-          <p className="title">We would love to learn a little more about you.</p>
-          <input id="name" placeholder="Name" type="text"></input>
-          <input id="email" placeholder="Email" type="text"></input>
-          <input id="gender" placeholder="Gender" type="text"></input>
-          <hr></hr>
-          <p className="title">Around how old are you?</p>
-          <div className="triple-form">
-            <div className="age-box">20</div>
-            <div className="age-box">30</div>
-            <div className="age-box">40</div>
-          </div>
-          <hr></hr>
-          <p className="title">When are you usually asleep?</p>
-          <div className="timeline">
-            <div className="no-border time label">NOON</div>
-            {Array.apply(1, Array(11)).map(function (v, i) {
-              return (
-                <div className="time pm">{i + 1}</div>
-              )
-            })}
-            <div className="time label">MIDNIGHT</div>
-            {Array.apply(1, Array(11)).map(function (v, i) {
-              return (
-                <div className="time am">{i + 1}</div>
-              )
-            })}
-            <div className="time label">NOON</div>
-          </div>
-          <hr></hr>
-          <p className="title">How clean do you like it?</p>
-          <div className="triple-form">
-            <img id="clean" className='clean-box' src={"images/clean.png"}></img>
-            <img id="medium" className='clean-box' src={"images/medium.png"}></img>
-            <img id="messy" className='clean-box' src={"images/messy.png"}></img>
-          </div>
-          <hr></hr>
-          <p className="title"> What is your comfortable noise level?</p>
-          <div className="triple-form">
-            <img id="library" className='noise-box' src={"images/library.png"}></img>
-            <img id="cafe" className='noise-box' src={"images/cafe.png"}></img>
-            <img id="party" className='noise-box' src={"images/party.png"}></img>
-          </div>
-          <hr></hr>
-          <p className="title">What is your preferred amount of interaction with house mates?</p>
-          <div className="triple-form">
-            <div className="interaction-box">Like Strangers</div>
-            <div className="interaction-box">Hangout Sometimes</div>
-            <div className="interaction-box">Everything together</div>
-          </div>
-          <hr></hr>
-          <p className="title">What are you interested in? Why house with us?</p>
-          <textarea id="interests"></textarea>
-          <hr></hr>
-          <div className="triple-form align-left">
-            <p className="title">Thanks for taking the time. Talk to you soon!</p>
-            <div className="submit spaced" onClick={this.submit}>DONE</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-});
+
+// HTML ************************************************************************
+<div className="form-container">
+  <div className="form">
+    <h1>Hello, nice to meet you!</h1>
+    <div>
+      We are a group of [engineers] looking to house together.  We enjoy
+      [working on projects together], and we are looking for people to
+      join us!
+    </div>
+    <p className="title">We would love to learn a little more about you.</p>
+    <input id="name" placeholder="Name" type="text"></input>
+    <input id="email" placeholder="Email" type="text"></input>
+    <input id="gender" placeholder="Gender" type="text"></input>
+    <hr></hr>
+    <p className="title">Around how old are you?</p>
+    <MultipleChoiceForm />
+    <hr></hr>
+    <p className="title">When are you usually asleep?</p>
+    <div className="timeline">
+      <div className="no-border time label">NOON</div>
+      {Array.apply(1, Array(11)).map(function (v, i) {
+        return (
+          <div className="time pm">{i + 1}</div>
+        )
+      })}
+      <div className="time label">MIDNIGHT</div>
+      {Array.apply(1, Array(11)).map(function (v, i) {
+        return (
+          <div className="time am">{i + 1}</div>
+        )
+      })}
+      <div className="time label">NOON</div>
+    </div>
+    <hr></hr>
+    <p className="title">How clean do you like it?</p>
+    <MultipleChoiceForm />
+    <hr></hr>
+    <p className="title"> What is your comfortable noise level?</p>
+    <MultipleChoiceForm />
+    <hr></hr>
+    <p className="title">What is your preferred amount of interaction with house mates?</p>
+    <MultipleChoiceForm />
+    <hr></hr>
+    <p className="title">What are you interested in? Why house with us?</p>
+    <textarea id="interests"></textarea>
+    <hr></hr>
+    <div className="triple-form align-left">
+      <p className="title">Thanks for taking the time. Talk to you soon!</p>
+      <div className="submit spaced" onClick={this.submit}>DONE</div>
+    </div>
+  </div>
+</div>
+);}});
 
 module.exports = Profile;
