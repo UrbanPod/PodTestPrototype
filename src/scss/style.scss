@@ -5,6 +5,7 @@
 
 // Helpers.
 @import "helpers/shadows";
+@import "helpers/colors";
 
 // Base.
 @import "base/base";
@@ -13,5 +14,6 @@
 @import "_components/location_box";
 @import "_components/progress";
 @import "_components/chat_box";
+@import "_components/profile";
 
 // Pages.
