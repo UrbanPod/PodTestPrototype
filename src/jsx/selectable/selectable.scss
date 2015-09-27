@@ -1,0 +1,25 @@
+$anim-speed: .1s;
+.box {
+  display: flex;
+  behavior: url("PIE.htc");
+  border: 2px solid $form-color;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  transition: all $anim-speed ease;
+}
+
+.box:hover,
+.box.hover,
+.box-active {
+  border: 6px solid $form-color;
+  background-color: $form-color;
+  color: $text-white;
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.box-active {
+  transform: scale(1.15);
+}
