@@ -1,3 +1,5 @@
+var Multiple = require("../multiple/multiple.jsx");
+var Selectable = require("../selectable/selectable.jsx");
 var mouseDown;
 
 // Handle user interactions
@@ -17,26 +19,6 @@ window.onload = function() {
   }).bind("selectstart", function() {
     return false;
   });
-
-  $(".age-box").click(function() {
-    $(".age-box").removeClass("age-active");
-    $(this).addClass("age-active");
-  });
-
-  $(".interaction-box").click(function() {
-    $(".interaction-box").removeClass("interaction-active");
-    $(this).addClass("interaction-active");
-  });
-
-  $(".clean-box").click(function() {
-    $(".clean-box").removeClass("clean-active");
-    $(this).addClass("clean-active");
-  });
-
-  $(".noise-box").click(function() {
-    $(".noise-box").removeClass("noise-active");
-    $(this).addClass("noise-active");
-  });
 };
 
 // Utility for grabbing times
@@ -54,46 +36,80 @@ var getTime = function getTime() {
   return time;
 }
 
-var getId = function getId(elem) {
-  if (elem) {
-    return elem.id;
-  }
+var TAGS = [
+  "name", "email", "gender", // basic info
+  "age", "sleep", "clean", "nose", "interaction", // living info
+  "interests" // person metadata
+];
+
+var getTextItems = function getTextItems(tag, items) {
+  return {
+    tag: tag,
+    items: items.map(function(item) {
+      return {
+        "textData": item,
+        "value": item
+      };
+    })
+  };
+}
+
+var getImageItems = function getImageItems(tag, items) {
+  return {
+    tag: tag,
+    items: items.map(function(item) {
+      return {
+        "imageLink": "images/" + item + ".png",
+        "value": item,
+        "width": "150px",
+        "height": "150px"
+      };
+    })
+  };
 }
 
 var Profile = React.createClass({
-  submit: function() {
-    var data = {
-      name: $("#name").val(),
-      email: $("#email").val(),
-      gender: $("#gender").val(),
-      age: $(".age-active").text(),
-      sleep: $(".time-active").map(getTime),
-      clean: getId($(".clean-active")[0]),
-      noise: getId($(".noise-active")[0]),
-      interaction: $(".interaction-active").text(),
-      interests: $("#interests").val()
-    };
+  getInitialState: function() {
+    var state = {}
+    TAGS.forEach(function(tag) {
+      state[tag] = null;
+    });
 
-    console.log(data);
+    return state;
+  },
+  formUpdated: function(tag, data) {
+    var state = this.state;
+    state[tag] = data;
+    this.setState(state);
+  },
+  submit: function() {
+    console.log(this.state);
   },
   render: function() {
+    var doneSelector = {
+      tag: "done",
+      handleClick: this.submit,
+      textData: "DONE",
+      style: {
+        "margin-left": "60px"
+      }
+    };
+
     return (
       <div className="form-container">
         <div className="form">
           <h1>
             Hello! Nice to meet you</h1>
-          <div>We are a group of [engineers] looking to house together.  We enjoy [working on projects together], and we are looking for people to join us!</div>
+          <div>We are a group of [engineers] looking to house together. We enjoy [working on projects together], and we are looking for people to join us!</div>
           <p className="title">We would love to learn a little more about you.</p>
           <input id="name" placeholder="Name" type="text"></input>
           <input id="email" placeholder="Email" type="text"></input>
           <input id="gender" placeholder="Gender" type="text"></input>
           <hr></hr>
           <p className="title">Around how old are you?</p>
-          <div className="triple-form">
-            <div className="age-box">20</div>
-            <div className="age-box">30</div>
-            <div className="age-box">40</div>
-          </div>
+          <Multiple data={getTextItems("age", [
+            "20", "30", "40"
+          ])} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">When are you usually asleep?</p>
           <div className="timeline">
@@ -113,32 +129,27 @@ var Profile = React.createClass({
           </div>
           <hr></hr>
           <p className="title">How clean do you like it?</p>
-          <div className="triple-form">
-            <img id="clean" className='clean-box' src={"images/clean.png"}></img>
-            <img id="medium" className='clean-box' src={"images/medium.png"}></img>
-            <img id="messy" className='clean-box' src={"images/messy.png"}></img>
-          </div>
+          <Multiple data={getImageItems("clean", [
+            "clean", "medium", "messy"
+          ])} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title"> What is your comfortable noise level?</p>
-          <div className="triple-form">
-            <img id="library" className='noise-box' src={"images/library.png"}></img>
-            <img id="cafe" className='noise-box' src={"images/cafe.png"}></img>
-            <img id="party" className='noise-box' src={"images/party.png"}></img>
-          </div>
+          <p className="title">
+            What is your comfortable noise level?</p>
+          <Multiple data={getImageItems("noise", [
+            "library", "cafe", "party"
+          ])} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">What is your preferred amount of interaction with house mates?</p>
-          <div className="triple-form">
-            <div className="interaction-box">Like Strangers</div>
-            <div className="interaction-box">Hangout Sometimes</div>
-            <div className="interaction-box">Everything together</div>
-          </div>
+          <Multiple data={getTextItems("interaction", [
+            "Like Strangers", "Hangout Sometimes", "Everything Together"
+          ])} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">What are you interested in? Why house with us?</p>
           <textarea id="interests"></textarea>
           <hr></hr>
-          <div className="triple-form align-left">
+          <div className="align-left">
             <p className="title">Thanks for taking the time. Talk to you soon!</p>
-            <div className="submit spaced" onClick={this.submit}>DONE</div>
+            <Selectable data={doneSelector}/>
           </div>
         </div>
       </div>
