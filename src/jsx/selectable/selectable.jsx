@@ -6,7 +6,6 @@ var Selectable = React.createClass({
     $(e.target).toggleClass("box-active");
   },
   render: function() {
-    console.log(this.props.data.style);
     var boxStyle = this.props.data.style || {};
 
     boxStyle["backgroundImage"] = this.props.data.imageLink

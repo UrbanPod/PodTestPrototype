@@ -1,44 +1,10 @@
 var Multiple = require("../multiple/multiple.jsx");
 var Selectable = require("../selectable/selectable.jsx");
-var mouseDown;
-
-// Handle user interactions
-window.onload = function() {
-  $(document).mouseup(function() {
-    mouseDown = false;
-  });
-
-  $(".time").mousedown(function() {
-    $(this).toggleClass("time-active");
-    mouseDown = true;
-    return false;
-  }).mouseover(function() {
-    if (mouseDown) {
-      $(this).toggleClass("time-active");
-    }
-  }).bind("selectstart", function() {
-    return false;
-  });
-};
-
-// Utility for grabbing times
-var getTime = function getTime() {
-  var time = $(this).text();
-  if (time === "NOON") {
-    time = "12";
-  }
-  if (time === "MIDNIGHT") {
-    time = "0";
-  }
-  if ($(this).hasClass("pm")) {
-    time = (parseInt(time) + 12).toString();
-  }
-  return time;
-}
+var SlideHightlighter = require("../slide_hightlighter/slide_hightlighter.jsx");
 
 var TAGS = [
   "name", "email", "gender", // basic info
-  "age", "sleep", "clean", "nose", "interaction", // living info
+  "age", "sleep", "clean", "noise", "interaction", // living info
   "interests" // person metadata
 ];
 
@@ -68,6 +34,27 @@ var getImageItems = function getImageItems(tag, items) {
   };
 }
 
+var TIMES = Array(11).join(0).split(0).map(function(v, i) {
+  return i + 1;
+});
+
+var timeLineData = {
+  "tag": "sleep",
+  "start": "NOON",
+  "middle": "MIDNIGHT",
+  "end": "NOON",
+  "rangeOne": TIMES,
+  "rangeTwo": TIMES,
+  "getValue": function (time, isOne) {
+    if (time === "NOON") { time = "12"; }
+    if (time === "MIDNIGHT") { time = "0"; }
+    if (isOne) {
+      time = (parseInt(time) + 12).toString();
+    }
+    return time;
+  }
+};
+
 var Profile = React.createClass({
   getInitialState: function() {
     var state = {}
@@ -83,15 +70,23 @@ var Profile = React.createClass({
     this.setState(state);
   },
   submit: function() {
-    console.log(this.state);
+    var state = this.state;
+
+    state["name"] = $("#name").val();
+    state["email"] = $("#email").val();
+    state["gender"] = $("#gender").val();
+    state["interests"] = $("#interests").val();
+
+    console.log(state);
+    this.setState(state);
   },
   render: function() {
     var doneSelector = {
       tag: "done",
-      handleClick: this.submit,
+      selected: this.submit,
       textData: "DONE",
       style: {
-        "margin-left": "60px"
+        "marginLeft": "60px"
       }
     };
 
@@ -112,21 +107,7 @@ var Profile = React.createClass({
           ])} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">When are you usually asleep?</p>
-          <div className="timeline">
-            <div className="no-border time label">NOON</div>
-            {Array.apply(1, Array(11)).map(function (v, i) {
-              return (
-                <div className="time pm">{i + 1}</div>
-              )
-            })}
-            <div className="time label">MIDNIGHT</div>
-            {Array.apply(1, Array(11)).map(function (v, i) {
-              return (
-                <div className="time am">{i + 1}</div>
-              )
-            })}
-            <div className="time label">NOON</div>
-          </div>
+          <SlideHightlighter data={timeLineData} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">How clean do you like it?</p>
           <Multiple data={getImageItems("clean", [
