@@ -1,0 +1,186 @@
+$form-font: 20px;
+$inactive-color: #F0F2F1;
+$form-color: #3f51b5;
+$anim-speed: .1s;
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 60px;
+    width: 40%;
+    min-width: 400px;
+
+    .title {
+        margin-bottom: 15px;
+        font-size: 26px;
+        font-weight: 200;
+    }
+
+    .triple-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+
+        .submit,
+        .interaction-box,
+        .age-box {
+            display: flex;
+            behavior: url("PIE.htc");
+            border: 2px solid $form-color;
+            padding: 20px;
+            margin: 5px;
+            text-align: center;
+            transition: transform $anim-speed ease;
+        }
+
+        .spaced {
+          margin-left: 20px;
+          height: auto;
+        }
+
+        .interaction-active,
+        .age-active {
+            background-color: $form-color;
+            color: $text-primary-white;
+            transform: scale(1.15);
+        }
+
+        .submit:hover,
+        .submit.hover,
+        .interaction-box:hover,
+        .interaction-box.hover,
+        .age-box:hover,
+        .age-box.hover {
+            background-color: $form-color;
+            color: $text-primary-white;
+            cursor: pointer;
+            transform: scale(1.25);
+        }
+
+        .noise-box,
+        .clean-box {
+            display: flex;
+            flex-direction: row;
+            width: 180px;
+            height: 180px;
+            border: 6px solid $inactive-color;
+            transition: all $anim-speed ease;
+        }
+
+        .noise-active,
+        .clean-active {
+            border: 6px solid $form-color;
+            transform: scale(1.15);
+        }
+
+        .noise-box:hover,
+        .noise-box.hover,
+        .clean-box:hover,
+        .clean-box.hover {
+            border: 6px solid $form-color;
+            cursor: pointer;
+            transform: scale(1.25);
+        }
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        width: 100%;
+
+        .time {
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            display: flex;
+            behavior: url("PIE.htc");
+            border-left: 1px solid #3f51b5;
+            padding-left: 6px;
+            padding-right: 6px;
+            width: auto;
+            height: 25px;
+            padding-bottom: 2px;
+            box-sizing: padding-box;
+            transition: all $anim-speed ease;
+        }
+
+        .time-active,
+        .time:hover {
+            background: $form-color;
+            color: $text-primary-white;
+            transform: scale(1.25);
+        }
+
+        .time-active {
+            cursor: ew-resize;
+            transform: scale(1.25);
+        }
+
+        .label {
+            padding: -1 6 6;
+        }
+
+        .no-border {
+            border: none;
+        }
+    }
+
+    textarea {
+        resize: none;
+        font-size: 20px;
+        font-weight: 200;
+        padding: 15px;
+        max-height: 20em;
+        word-break: break-word;
+        border: solid 1px #aaaab2;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        min-height: 10em;
+        width: 100%;
+    }
+
+    input {
+        font-size: $form-font;
+        width: 40%;
+        min-width: 400px;
+        font-weight: 200;
+    }
+
+    textarea,
+    input[type="text"] {
+        padding: 10px;
+        border: solid 1px #dcdcdc;
+        transition: box-shadow 0.3s, border 0.3s;
+        text-align: left;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    textarea:focus,
+    textarea.focus,
+    input[type="text"]:focus,
+    input[type="text"].focus {
+        border: solid 1px $form-color;
+        box-shadow: 0 0 5px 1px $form-color;
+    }
+
+    .align-left {
+      justify-content: flex-end;
+    }
+}

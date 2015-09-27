@@ -5,15 +5,6 @@ body {
   color: $text-primary;
 }
 
-form {
-  margin: 0;
-}
-
-#pod-app {
-  display: flex;
-  align-items: left;
-}
-
 // This allows Firefox to give the contenteditable some height.
 [contenteditable='true']:before {
   content: "\feff ";

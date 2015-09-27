@@ -12,9 +12,11 @@
 @import "base/base";
 
 // Components.
+@import "_components/app";
 @import "_components/location_box";
 @import "_components/progress";
 @import "_components/chat_box";
 @import "_components/message";
+@import "_components/profile";
 
 // Pages.

@@ -5,12 +5,25 @@
   border-width: 0 0 0 1;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 #chat-box {
   flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+  // height: 100%;
+}
+
+.message {
+  white-space: pre-wrap;
 }
 
 .message-form {
@@ -30,12 +43,4 @@
       outline: none;
     }
   }
-}
-
-.messages {
-  padding: 20px;
-}
-
-.message {
-  white-space: pre-wrap;
 }

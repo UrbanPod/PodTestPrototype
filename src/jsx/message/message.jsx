@@ -13,7 +13,8 @@ var Message = React.createClass({
 
   render: function() {
     var _this = this;
-    var formattedTimeDiff = _this._getRelativeTimeDisplay(this.props.timestamp);
+    var formattedTimeDiff = _this
+      ._getRelativeTimeDisplay(_this.props.timestamp);
 
     return (
       <div className="message">

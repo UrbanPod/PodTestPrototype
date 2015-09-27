@@ -33,6 +33,8 @@ console.log("Production mode: " + isProduction);
 gulp.task('copy', function() {
   gulp.src("src/index.html")
     .pipe(gulp.dest("public"));
+  gulp.src("assets/images/*.png")
+    .pipe(gulp.dest("public/images"));
 });
 
 // Lint task.

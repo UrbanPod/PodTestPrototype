@@ -14,8 +14,10 @@ _components/
 .zsecure
 .env
 
-# Coverage.
+# Testing.
 coverage/
+reports/
+selenium-debug.log
 
 # Distribution.
 public/

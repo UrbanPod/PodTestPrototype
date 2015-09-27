@@ -12,10 +12,10 @@ jsdom_test = require("./test_utils/jsdom_utils");
 
 // Tests
 describe("Sequelize Model Unittests", seq_test(function () {
-  require("./models/tests/test_user")(models);
-  require("./models/tests/test_interest")(models);
+  require("../models/tests/test_user")(models);
+  require("../models/tests/test_interest")(models);
 }));
 
 describe("React Component Unittests", function () {
-  jsdom_test(require("./src/jsx/message/message_test.jsx"));
+  jsdom_test(require("../src/jsx/message/message_test.jsx"));
 });
