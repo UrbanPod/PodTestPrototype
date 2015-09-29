@@ -1,7 +1,5 @@
 $form-font: 20px;
-$inactive-color: #F0F2F1;
-$form-color: #3f51b5;
-$anim-speed: .1s;
+$anim-speed: 0.1s;
 
 .form-container {
     display: flex;
@@ -21,123 +19,6 @@ $anim-speed: .1s;
         margin-bottom: 15px;
         font-size: 26px;
         font-weight: 200;
-    }
-
-    .triple-form {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-
-        .submit,
-        .interaction-box,
-        .age-box {
-            display: flex;
-            behavior: url("PIE.htc");
-            border: 2px solid $form-color;
-            padding: 20px;
-            margin: 5px;
-            text-align: center;
-            transition: transform $anim-speed ease;
-        }
-
-        .spaced {
-          margin-left: 20px;
-          height: auto;
-        }
-
-        .interaction-active,
-        .age-active {
-            background-color: $form-color;
-            color: $text-primary-white;
-            transform: scale(1.15);
-        }
-
-        .submit:hover,
-        .submit.hover,
-        .interaction-box:hover,
-        .interaction-box.hover,
-        .age-box:hover,
-        .age-box.hover {
-            background-color: $form-color;
-            color: $text-primary-white;
-            cursor: pointer;
-            transform: scale(1.25);
-        }
-
-        .noise-box,
-        .clean-box {
-            display: flex;
-            flex-direction: row;
-            width: 180px;
-            height: 180px;
-            border: 6px solid $inactive-color;
-            transition: all $anim-speed ease;
-        }
-
-        .noise-active,
-        .clean-active {
-            border: 6px solid $form-color;
-            transform: scale(1.15);
-        }
-
-        .noise-box:hover,
-        .noise-box.hover,
-        .clean-box:hover,
-        .clean-box.hover {
-            border: 6px solid $form-color;
-            cursor: pointer;
-            transform: scale(1.25);
-        }
-    }
-
-    .timeline {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 20px;
-        margin-top: 10px;
-        width: 100%;
-
-        .time {
-            cursor: default;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            display: flex;
-            behavior: url("PIE.htc");
-            border-left: 1px solid #3f51b5;
-            padding-left: 6px;
-            padding-right: 6px;
-            width: auto;
-            height: 25px;
-            padding-bottom: 2px;
-            box-sizing: padding-box;
-            transition: all $anim-speed ease;
-        }
-
-        .time-active,
-        .time:hover {
-            background: $form-color;
-            color: $text-primary-white;
-            transform: scale(1.25);
-        }
-
-        .time-active {
-            cursor: ew-resize;
-            transform: scale(1.25);
-        }
-
-        .label {
-            padding: -1 6 6;
-        }
-
-        .no-border {
-            border: none;
-        }
     }
 
     textarea {
@@ -181,6 +62,9 @@ $anim-speed: .1s;
     }
 
     .align-left {
-      justify-content: flex-end;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
     }
 }

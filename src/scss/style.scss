@@ -1,8 +1,6 @@
 // Don't forget to import your newly creating .scss files here.
 // Don't include the .scss in the end.
-
 // Vendors.
-
 // Helpers.
 @import "helpers/shadows";
 @import "helpers/colors";
@@ -12,11 +10,14 @@
 @import "base/base";
 
 // Components.
-@import "_components/app";
+@import "_components/selectable";
+@import "_components/multiple";
+@import "_components/slide_highlighter";
+
+// Chat_box
+@import "_components/chat_box";
 @import "_components/location_box";
 @import "_components/progress";
-@import "_components/chat_box";
-@import "_components/message";
-@import "_components/profile";
 
-// Pages.
+// Signup
+@import "_components/profile";

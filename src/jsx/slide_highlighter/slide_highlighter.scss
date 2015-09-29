@@ -1,0 +1,46 @@
+.timeline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+
+    .time {
+        cursor: default;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: flex;
+        behavior: url("PIE.htc");
+        border-left: 1px solid #3f51b5;
+        padding-left: 6px;
+        padding-right: 6px;
+        width: auto;
+        height: 25px;
+        padding-bottom: 2px;
+        box-sizing: padding-box;
+        transition: all $anim-speed ease;
+    }
+
+    .time-active,
+    .time:hover {
+        background: $form-color;
+        color: $text-white;
+    }
+
+    .time-active {
+        cursor: ew-resize;
+    }
+
+    .label {
+        padding: -1 6 6;
+    }
+
+    .no-border {
+        border: none;
+    }
+}

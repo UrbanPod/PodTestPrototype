@@ -28,7 +28,6 @@
     "dotenv": "^1.2.0",
     "express": "^4.11.2",
     "express-session": "^1.10.2",
-    "gulp-eslint": "^1.0.0",
     "istanbul": "^0.3.19",
     "jsdom": "^6.4.0",
     "mocha": "^2.3.2",
