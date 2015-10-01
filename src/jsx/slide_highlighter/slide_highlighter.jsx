@@ -1,4 +1,4 @@
-var SlideHighliter = React.createClass({
+var SlideHighlighter = React.createClass({
   getInitialState: function() {
     return {
       "mouseDown": false,
@@ -55,4 +55,4 @@ var SlideHighliter = React.createClass({
   }
 });
 
-module.exports = SlideHighliter;
+module.exports = SlideHighlighter;

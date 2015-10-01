@@ -15,11 +15,10 @@
   flex-direction: column;
 }
 
-.messages {
+.message-list {
   flex: 1;
   padding: 20px;
   overflow-y: scroll;
-  // height: 100%;
 }
 
 .message {
@@ -28,7 +27,6 @@
 
 .message-form {
   width: 100%;
-  position: absolute;
   bottom: 0;
 
   & > #message-form-input {

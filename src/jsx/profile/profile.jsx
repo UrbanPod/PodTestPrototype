@@ -1,6 +1,6 @@
 var Multiple = require("../multiple/multiple.jsx");
 var Selectable = require("../selectable/selectable.jsx");
-var SlideHightlighter = require("../slide_hightlighter/slide_hightlighter.jsx");
+var SlideHightlighter = require("../slide_highlighter/slide_highlighter.jsx");
 
 var TAGS = [
   "name", "email", "gender", // basic info
