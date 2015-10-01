@@ -1,20 +1,22 @@
 var Message = require("../message/message.jsx");
 
-var messageListDOM;
+var $messageList;
 
 var MessageList = React.createClass({
   displayName: "MessageList",
 
   componentDidMount: function() {
     var _this = this;
-    messageListDOM = document.getElementById("message-list-chat");
+
+    $messageList = $('.message-list');
+
     $GlobalEvents.on('message_list:scroll', function() {
       _this._scrollToBottom();
     });
   },
 
   _scrollToBottom: function() {
-    messageListDOM.scrollTop = messageListDOM.scrollHeight;
+    $messageList.animate({scrollTop: $messageList[0].scrollHeight}, 'slow');
   },
 
   render: function() {
@@ -27,7 +29,7 @@ var MessageList = React.createClass({
     }
 
     return (
-      <div className='message-list' id='message-list-chat'>
+      <div className='message-list'>
         { this.props.messages.map(renderMessage)}
       </div>
     );
