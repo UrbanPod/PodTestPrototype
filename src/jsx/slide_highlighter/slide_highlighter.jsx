@@ -55,8 +55,4 @@ var SlideHighlighter = React.createClass({
   }
 });
 
-<<<<<<< HEAD
 module.exports = SlideHighlighter;
-=======
-module.exports = SlideHighliter;
->>>>>>> c0a24381a57bfbd8678ef0426ca732550457dbf1
