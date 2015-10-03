@@ -16,7 +16,7 @@ module.exports = function (sequelize) {
   });
 
   // Create missing tables
-  sequelize.sync();
+  sequelize.sync({force: true});
 
   return {
     "user": user,

@@ -77,8 +77,12 @@ var Profile = React.createClass({
     state["gender"] = $("#gender").val();
     state["interests"] = $("#interests").val();
 
-    console.log(state);
     this.setState(state);
+    $.post("/signup", state).then(function(results) {
+      
+    }).catch(function (err) {
+      alert("Sorry, our sign-ups are having issues right now. We're working on fixing it!");
+    });
   },
   render: function() {
     var doneSelector = {
