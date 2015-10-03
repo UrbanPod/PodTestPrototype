@@ -6,8 +6,8 @@ RUN apt-get update && \
     sudo apt-get install -y git build-essential python curl postgresql postgresql-contrib && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash
 
-ADD . /PodTestPrototype
-WORKDIR /PodTestPrototype
+ADD . /pod
+WORKDIR /pod
 
 RUN . /root/.bashrc && \
     nvm install stable && \
