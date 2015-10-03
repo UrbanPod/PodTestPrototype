@@ -8,7 +8,7 @@ var MessageForm = React.createClass({
   handleKeyPress: function(e) {
     // Submit form on Enter. Shift+Enter provides a newline.
     if(e.key === "Enter" && !e.shiftKey) {
-      $GlobalEvents.trigger('message_list:scroll');
+      $GlobalEvents.trigger('message_list:scroll', ['myself']);
       this.handleSubmit(e);
     }
   },

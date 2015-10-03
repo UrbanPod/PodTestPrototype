@@ -1,5 +1,3 @@
-var socket = io();
-
 var MessageList = require('../message_list/message_list.jsx');
 var MessageForm = require('../message_form/message_form.jsx');
 
@@ -7,7 +5,7 @@ var ChatBox = React.createClass({
   displayName: 'ChatBox',
 
   getInitialState: function() {
-    socket.on('send:message', this.messageRecieve);
+    POD_SOCKET.on('send:message', this.messageRecieve);
 
     return {users: [], clientUserName: '', messages:[], text: ''};
   },
@@ -28,7 +26,7 @@ var ChatBox = React.createClass({
     _messages.push(message);
 
     this.setState({ messages : _messages });
-    socket.emit('send:message', message);
+    POD_SOCKET.emit('send:message', message);
   },
 
   componentWillMount: function(){

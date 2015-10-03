@@ -3,6 +3,11 @@ var Message = React.createClass({
 
   componentDidMount: function() {
     var _this = this;
+
+    // TODO: Cache our username and check rather than hardwire this in.
+    if (this.props.user !== 'me') {
+      $GlobalEvents.trigger('message_list:scroll', ['other']);
+    }
   },
 
   // TODO:Missing unit test.
