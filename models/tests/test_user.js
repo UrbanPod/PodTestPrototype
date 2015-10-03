@@ -4,9 +4,18 @@ module.exports = function (models) {
   var User = models.user;
   it("User should have the correct fields", function (done) {
     User.create(mockedUser).then(function (result) {
-      expect(result.pack()).to.include.all.keys(
-            ["id", "name", "email", "intro"]
-      );
+      expect(result.public()).to.include.all.keys([
+        "id",
+        "name",
+        "email",
+        "gender",
+        "about",
+        "clean",
+        "age",
+        "noise",
+        "interaction",
+        "sleep"
+      ]);
       done();
     });
   });

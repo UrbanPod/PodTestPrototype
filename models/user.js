@@ -21,11 +21,18 @@ module.exports = function (db) {
     paranoid: true,
     freezeTableName: true,
     instanceMethods: {
-      pack: function () {
+      public: function () {
         return {
           id: this.id,
           name: this.name,
-          email: this.email
+          email: this.email,
+          gender: this.gender,
+          about: this.about,
+          clean: this.clean,
+          age: this.age,
+          noise: this.noise,
+          interaction: this.interaction,
+          sleep: this.sleep
         }
       }
     }

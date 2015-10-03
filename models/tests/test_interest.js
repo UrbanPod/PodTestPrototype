@@ -4,7 +4,7 @@ module.exports = function (models) {
   var Interest = models.interest;
   it("Interest should have the correct fields", function (done) {
     Interest.create(mockedInterest).then(function (result) {
-      expect(result.pack()).to.include.all.keys(
+      expect(result.public()).to.include.all.keys(
         ["id", "name"]
       );
       done();
