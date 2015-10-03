@@ -15,6 +15,10 @@ $anim-speed: 0.1s;
     width: 40%;
     min-width: 400px;
 
+    p {
+      margin:0px;
+    }
+
     .title {
         margin-bottom: 15px;
         font-size: 26px;
@@ -67,5 +71,11 @@ $anim-speed: 0.1s;
         flex-direction: row;
         justify-content: flex-end;
         width: 100%;
+    }
+
+    .invalid:before {
+      color: red;
+      content: "*";
+      margin-right:6px;
     }
 }
