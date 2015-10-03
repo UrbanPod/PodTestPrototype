@@ -110,10 +110,11 @@ gulp.task('watch', function() {
     'src/scss/**/*.scss',
     '!src/scss/{_components,_components/**}'],
   ['scss']);
-  gulp.watch('src/**/*.{js,jsx}', ['lint', 'browserify']);
+  // gulp.watch('src/**/*.{js,jsx}', ['lint', 'browserify']);
+  gulp.watch('src/**/*.{js,jsx}', ['browserify']);
 });
 
-gulp.task('build', ['copy', 'lint', 'scss:components', 'browserify']);
+gulp.task('build', ['copy', 'scss:components', 'browserify']);
 gulp.task('dev', ['nodemon', 'watch']);
 gulp.task('prod', ['build', 'dev']);
 
