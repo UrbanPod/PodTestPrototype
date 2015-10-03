@@ -6,7 +6,6 @@ module.exports = function (models) {
   var User = models.user;
 
   router.post('/', function (req, res) {
-    console.log("here");
     User.build({
       name: req.body.name,
       email: req.body.email,
@@ -18,15 +17,14 @@ module.exports = function (models) {
       interaction: req.body.interaction,
       sleep: req.body.sleep
     }).save().then(function (user) {
-      console.log(user);
       if (user) {
         handler.success(res, { "id": user.id });
       } else {
-        handler.error("something went wrong.");
+        handler.error("Something went wrong!");
       }
     }).catch(function(err) {
       console.log(err);
-      handler.error(err);
+      handler.error(res, err);
     })
   });
 

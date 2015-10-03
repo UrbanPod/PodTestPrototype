@@ -59,9 +59,9 @@ var Profile = React.createClass({
   getInitialState: function() {
     var state = {}
     TAGS.forEach(function(tag) {
-      state[tag] = null;
+      state[tag] = "";
     });
-
+    state["sleep"] = [];
     return state;
   },
   formUpdated: function(tag, data) {
@@ -78,9 +78,10 @@ var Profile = React.createClass({
     state["interests"] = $("#interests").val();
 
     this.setState(state);
-    $.post("/signup", state).then(function(results) {
-      
-    }).catch(function (err) {
+
+    $.post("/signup", state).done(function(results, err) {
+      require('../app/app.jsx').transitionTo("/registered");
+    }).fail(function (err) {
       alert("Sorry, our sign-ups are having issues right now. We're working on fixing it!");
     });
   },

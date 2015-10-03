@@ -4,6 +4,7 @@ var RouteHandler = window.ReactRouter.RouteHandler;
 
 var Pod = require('../pod/pod.jsx');
 var Profile = require('../profile/profile.jsx');
+var Registered = require('../registered/registered.jsx');
 
 var App = React.createClass({
   render: function() {
@@ -16,12 +17,13 @@ var App = React.createClass({
 var routes = (
   <Route handler={App}>
     <Route path="/" handler={Pod}></Route>
-    <Route path="/profile" handler={Profile}></Route>
+    <Route path="/signup" handler={Profile}></Route>
+    <Route path="/registered" handler={Registered}></Route>
   </Route>
 );
 
-Router.run(routes, function (Handler) {
+var router = Router.run(routes, function (Handler) {
   React.render(<Handler/>, document.getElementById('content'));
 });
 
-module.exports = App;
+module.exports = router;
