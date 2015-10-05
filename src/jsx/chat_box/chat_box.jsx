@@ -5,28 +5,8 @@ var ChatBox = React.createClass({
   displayName: 'ChatBox',
 
   getInitialState: function() {
-    POD_SOCKET.on('send:message', this.messageRecieve);
 
     return {users: [], clientUserName: '', messages:[], text: ''};
-  },
-
-  messageRecieve: function(message){
-    var _this = this;
-    var _messages = _this.state.messages;
-
-    _messages.push(message);
-
-    this.setState({ messages : _messages });
-  },
-
-  handleMessageSubmit: function(message){
-    var _this = this;
-    var _messages = _this.state.messages;
-
-    _messages.push(message);
-
-    this.setState({ messages : _messages });
-    POD_SOCKET.emit('send:message', message);
   },
 
   componentWillMount: function(){
@@ -41,13 +21,36 @@ var ChatBox = React.createClass({
     this.setState(_this.state);
   },
 
+  componentDidMount: function() {
+    POD_SOCKET.on('send:message', this._messageRecieve);
+  },
+
+  _messageRecieve: function(message){
+    var _this = this;
+    var _messages = _this.state.messages;
+
+    _messages.push(message);
+
+    this.setState({ messages : _messages });
+  },
+
+  _handleMessageSubmit: function(message){
+    var _this = this;
+    var _messages = _this.state.messages;
+
+    _messages.push(message);
+
+    this.setState({ messages : _messages });
+    POD_SOCKET.emit('send:message', message);
+  },
+
   render: function() {
     return (
       <div id='chat-box'>
         <MessageList messages={this.state.messages} />
         <MessageForm
           clientUserName={this.state.clientUserName}
-          onMessageSubmit={this.handleMessageSubmit} />
+          onMessageSubmit={this._handleMessageSubmit} />
       </div>
     );
   }

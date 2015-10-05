@@ -20,6 +20,7 @@ module.exports = function(render, find, utils) {
     );
 
     this.div = find(rendered, "div");
+    console.log('Hello world!');
     done();
   });
 
