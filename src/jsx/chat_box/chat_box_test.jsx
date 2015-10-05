@@ -12,12 +12,8 @@ var ChatBox = require("./chat_box.jsx");
 
 module.exports = function(render, find, utils) {
   beforeEach("Render and locate element", function(done) {
-    var rendered = render(
-      <ChatBox />
-    );
-
+    var rendered = render( <ChatBox /> );
     this.div = find(rendered, "div");
-    console.log('Hello world!');
     done();
   });
 

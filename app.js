@@ -25,15 +25,15 @@ io.sockets.on("connection", require("./routes/socket"));
 http.listen(PORT, "0.0.0.0");
 
 // Setup Database
-// var Sequelize = require('sequelize');
-//
-// console.log(process.env.PG_DB, process.env.PG_USER, process.env.PG_PASSWORD);
-// models = require('./models/db')(new Sequelize(
-//   process.env.PG_DB,
-//   process.env.PG_USER,
-//   process.env.PG_PASSWORD, {
-//     'dialect': 'postgres',
-//     'logging': false,
-//     'port': 5432
-//   }
-// ));
+var Sequelize = require('sequelize');
+
+console.log(process.env.PG_DB, process.env.PG_USER, process.env.PG_PASSWORD);
+models = require('./models/db')(new Sequelize(
+  process.env.PG_DB,
+  process.env.PG_USER,
+  process.env.PG_PASSWORD, {
+    'dialect': 'postgres',
+    'logging': false,
+    'port': 5432
+  }
+));
