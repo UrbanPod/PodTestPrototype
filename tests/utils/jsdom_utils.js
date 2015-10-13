@@ -1,14 +1,11 @@
 // Configuring JSDOM
 var jsdom = require("jsdom");
 
-global.document = jsdom.jsdom("<!doctype html><html><body>"
+// Front-end packages that are served locally for testing.
+global.$ = require('jquery');
+global.moment = require('moment');
 
-+ "<script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>"
-+ "<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js'></script>"
-+ "<script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js'></script>"
-+ "<script src='https://cdnjs.cloudflare.com/ajax/libs/react-router/0.13.3/ReactRouter.min.js'></script>"
-
-+ "</body></html>");
+global.document = jsdom.jsdom("<!doctype html><html><body></body></html>");
 global.window = document.defaultView;
 global.navigator = global.window.navigator;
 

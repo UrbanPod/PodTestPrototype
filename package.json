@@ -62,6 +62,8 @@
     "gulp-shell": "^0.4.1",
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.6",
     "nightwatch": "^0.8.3",
     "run-sequence": "^1.1.2",
     "selenium-standalone": "^4.6.3",

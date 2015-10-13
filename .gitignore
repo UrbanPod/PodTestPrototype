@@ -5,7 +5,7 @@
 # Javascript.
 .jshintrc
 node_modules/
-bower_components/
+bower/
 
 # Intermediates.
 _components/
