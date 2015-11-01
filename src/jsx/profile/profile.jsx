@@ -1,6 +1,6 @@
 var Multiple = require("../multiple/multiple.jsx");
 var Selectable = require("../selectable/selectable.jsx");
-var SlideHightlighter = require("../slide_hightlighter/slide_hightlighter.jsx");
+var SlideHighlighter = require("../slide_highlighter/slide_highlighter.jsx");
 
 var TAGS = [
   "name", "email", "gender", // basic info
@@ -107,7 +107,7 @@ var Profile = React.createClass({
           ])} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">When are you usually asleep?</p>
-          <SlideHightlighter data={timeLineData} updated={this.formUpdated}/>
+          <SlideHighlighter data={timeLineData} updated={this.formUpdated}/>
           <hr></hr>
           <p className="title">How clean do you like it?</p>
           <Multiple data={getImageItems("clean", [

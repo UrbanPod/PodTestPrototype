@@ -113,7 +113,7 @@ gulp.task('watch', function() {
   gulp.watch('src/**/*', ['browserify']);
 });
 
-gulp.task('build', ['copy', 'lint', 'scss:components', 'browserify']);
+gulp.task('build', ['copy', 'scss:components', 'browserify']);
 gulp.task('dev', ['nodemon', 'watch']);
 gulp.task('prod', ['build', 'dev']);
 
