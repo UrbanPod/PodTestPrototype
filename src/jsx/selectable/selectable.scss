@@ -15,7 +15,7 @@ $anim-speed: .1s;
 .box-active {
   border: 6px solid $form-color;
   background-color: $form-color;
-  color: $text-white;
+  color: $text-primary-white;
   cursor: pointer;
   transform: scale(1.15);
 }

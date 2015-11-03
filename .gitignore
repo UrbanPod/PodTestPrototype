@@ -5,7 +5,7 @@
 # Javascript.
 .jshintrc
 node_modules/
-bower_components/
+bower/
 
 # Intermediates.
 _components/
@@ -14,8 +14,10 @@ _components/
 .zsecure
 .env
 
-# Coverage.
+# Testing.
 coverage/
+reports/
+selenium-debug.log
 
 # Distribution.
 public/

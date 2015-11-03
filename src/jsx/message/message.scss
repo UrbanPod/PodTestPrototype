@@ -1,0 +1,13 @@
+.message {
+  white-space: pre-wrap;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .timestamp {
+    font-size: $small;
+    color: $text-hint;
+  }
+}

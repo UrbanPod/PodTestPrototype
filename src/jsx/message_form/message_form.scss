@@ -1,0 +1,17 @@
+.message-form {
+  width: 100%;
+  bottom: 0;
+
+  & > #message-form-input {
+    border-style: solid;
+    border-color: gray;
+    border-width: 1 0 0 0;
+
+    box-sizing: content-box;;
+    padding: 20px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

@@ -110,7 +110,8 @@ gulp.task('watch', function() {
     'src/scss/**/*.scss',
     '!src/scss/{_components,_components/**}'],
   ['scss']);
-  gulp.watch('src/**/*', ['browserify']);
+  // gulp.watch('src/**/*.{js,jsx}', ['lint', 'browserify']);
+  gulp.watch('src/**/*.{js,jsx}', ['browserify']);
 });
 
 gulp.task('build', ['copy', 'scss:components', 'browserify']);

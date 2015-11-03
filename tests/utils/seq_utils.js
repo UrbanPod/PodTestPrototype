@@ -4,12 +4,12 @@ var sequelize = new Sequelize(
   process.env.PG_USER,
   process.env.PG_PASSWORD, {
     dialect: "postgres",
-    logging: false
+    logging: console.log
   });
 
-var models = require('../models/db')(sequelize);
+var models = require('../../models/db')(sequelize);
 
-// Sequelize Mocking
+// Sequelize Mocking.
 var seq_test = function (next) {
   return function () {
     beforeEach(function (done) {

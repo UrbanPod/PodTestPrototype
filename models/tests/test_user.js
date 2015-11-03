@@ -5,7 +5,7 @@ module.exports = function (models) {
   it("User should have the correct fields", function (done) {
     User.create(mockedUser).then(function (result) {
       expect(result.pack()).to.include.all.keys(
-            ["id", "name", "email", "intro"]
+        ["id", "name", "email", "intro"]
       );
       done();
     });
