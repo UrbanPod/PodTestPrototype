@@ -1,5 +1,14 @@
 module.exports = {
   "name": "mocked user",
   "email": "mocked email",
-  "intro": "mocked about"
-}
+  "about": "mocked about",
+  "name": "",
+  "email": "",
+  "gender": "",
+  "about": "",
+  "clean": "",
+  "age": "",
+  "noise": "",
+  "interaction": "",
+  "sleep": []
+};

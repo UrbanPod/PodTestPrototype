@@ -61,13 +61,35 @@ var Profile = React.createClass({
     TAGS.forEach(function(tag) {
       state[tag] = null;
     });
-
     return state;
   },
   formUpdated: function(tag, data) {
     var state = this.state;
     state[tag] = data;
     this.setState(state);
+  },
+  validate: function(state) {
+    var results = [];
+    $.each(state, function(key, val) {
+      if (!val) {
+        $("#" + key + "-valid").addClass("invalid");
+        $(".done").toggleClass("box-active");
+        results.push(key);
+      } else {
+        $("#" + key + "-valid").removeClass("invalid");
+      }
+    });
+
+    if (results.length !== 0) {
+      $('html, body').animate({
+        scrollTop: $("#" + results[0] + "-valid").offset()
+          .top
+      }, 500);
+      $("#" + results[0]).focus();
+      return false;
+    }
+
+    return true;
   },
   submit: function() {
     var state = this.state;
@@ -77,8 +99,14 @@ var Profile = React.createClass({
     state["gender"] = $("#gender").val();
     state["interests"] = $("#interests").val();
 
-    console.log(state);
     this.setState(state);
+    if (this.validate(state)) {
+      $.post("/signup", state).done(function(results, err) {
+        require('../app/app.jsx').transitionTo("/registered");
+      }).fail(function (err) {
+        alert("Sorry, our sign-ups are having issues right now. We're working on fixing it!");
+      });
+    }
   },
   render: function() {
     var doneSelector = {
@@ -97,35 +125,35 @@ var Profile = React.createClass({
             Hello! Nice to meet you</h1>
           <div>We are a group of [engineers] looking to house together. We enjoy [working on projects together], and we are looking for people to join us!</div>
           <p className="title">We would love to learn a little more about you.</p>
-          <input id="name" placeholder="Name" type="text"></input>
-          <input id="email" placeholder="Email" type="text"></input>
-          <input id="gender" placeholder="Gender" type="text"></input>
+          <p id="name-valid"><input id="name" placeholder="Name" type="text"></input></p>
+          <p id="email-valid"><input id="email" placeholder="Email" type="text"></input></p>
+          <p id="gender-valid"><input id="gender" placeholder="Gender" type="text"></input></p>
           <hr></hr>
-          <p className="title">Around how old are you?</p>
+          <p id="age-valid" className="title">Around how old are you?</p>
           <Multiple data={getTextItems("age", [
             "20", "30", "40"
           ])} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title">When are you usually asleep?</p>
+          <p id="sleep-valid" className="title">When are you usually asleep?</p>
           <SlideHighlighter data={timeLineData} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title">How clean do you like it?</p>
+          <p id="clean-valid" className="title">How clean do you like it?</p>
           <Multiple data={getImageItems("clean", [
             "clean", "medium", "messy"
           ])} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title">
+          <p id="noise-valid" className="title">
             What is your comfortable noise level?</p>
           <Multiple data={getImageItems("noise", [
             "library", "cafe", "party"
           ])} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title">What is your preferred amount of interaction with house mates?</p>
+          <p id="interaction-valid" className="title">What is your preferred amount of interaction with house mates?</p>
           <Multiple data={getTextItems("interaction", [
             "Like Strangers", "Hangout Sometimes", "Everything Together"
           ])} updated={this.formUpdated}/>
           <hr></hr>
-          <p className="title">What are you interested in? Why house with us?</p>
+          <p id="interests-valid" className="title">What are you interested in? Why house with us?</p>
           <textarea id="interests"></textarea>
           <hr></hr>
           <div className="align-left">

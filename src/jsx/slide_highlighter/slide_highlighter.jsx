@@ -7,11 +7,11 @@ var SlideHighliter = React.createClass({
   },
   componentDidMount: function() {
     var _this = this;
-    $(document).mouseup(function() {
+    $(".timeline").mouseup(function() {
       var state = _this.state;
       state["selected"] = $(".time-active").get().map(_this.getTime);
       state["mouseDown"] = false;
-      _this.props.updated(_this.props.data.tag, state["selected"]);
+      _this.props.updated(_this.props.data.tag, state["selected"] || []);
       _this.setState(state);
     });
 

@@ -15,7 +15,7 @@ module.exports = function (db) {
     paranoid: true,
     freezeTableName: true,
     instanceMethods: {
-      pack: function () {
+      public: function () {
         return {
           id: this.id,
           name: this.name

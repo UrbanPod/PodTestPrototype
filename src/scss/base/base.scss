@@ -4,6 +4,10 @@ body {
   line-height: 1.5;
 }
 
+div#content {
+  height: 100%;
+}
+
 // This allows Firefox to give the contenteditable some height.
 [contenteditable='true']:before {
   content: "\feff ";
